@@ -1,2 +1,5 @@
 package database
 
+func Connect() {
+		
+}
