@@ -1,0 +1,42 @@
+//var
+$text-color: #FFF5EB;
+
+ 
+
+@media (max-width: 1440px) {
+    .navigation{
+        padding: 0 calc(50% - 620px);
+    }
+
+   .menu{
+        width: 1238px;
+        height: 18px;
+
+        .menu__list{
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 158px
+
+        }
+
+        a{
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 18px;
+            letter-spacing: 0.05em;
+
+            color: $text-color;
+        }
+   } 
+
+   
+
+   .bottom__line{
+        margin-top: 17.6px;
+        border-bottom: 1.5px solid $text-color;
+
+   }
+}

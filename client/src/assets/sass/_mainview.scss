@@ -1,0 +1,41 @@
+.home{
+    background: url('../img/background-home.png');
+    background-size: cover;
+}
+
+@media (max-width: 1455px) {
+    .home{
+        height: 800px;
+        border: 1px solid black;
+        
+    }
+
+    .title{
+        
+
+       .title__h1{
+        position: absolute;
+        width: 1242px;
+        height: 75px;
+        left: 94px;
+        top: 205px;
+        
+        font-family: 'Wadik';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 70px;
+        line-height: 90px;
+        text-align: center;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        
+
+        background: linear-gradient(343.85deg, rgba(218, 194, 182, 0.83) 11.42%, rgba(255, 245, 235, 0.83) 89.01%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        
+        text-shadow: -5px 9px 4px rgba(0, 0, 0, 0.25);
+       } 
+    }
+}
