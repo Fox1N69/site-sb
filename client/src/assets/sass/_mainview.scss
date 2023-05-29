@@ -7,35 +7,80 @@
     .home{
         height: 800px;
         border: 1px solid black;
+        padding: 0 calc(50% - 990px); 
         
+    }
+
+    .home__container{
+        height: 100%;
+        border: 2px solid black;
+        display: flex;
+        flex-direction: column;
+        gap: 235px;
+
     }
 
     .title{
         
 
        .title__h1{
-        position: absolute;
-        width: 1242px;
+        max-width: 1242px;
         height: 75px;
-        left: 94px;
-        top: 205px;
         
+        margin-top: 200px ; 
+        //margin-left: 94px;
+        margin-right: calc(50% - 200px);
+
         font-family: 'Wadik';
         font-style: normal;
         font-weight: 700;
-        font-size: 70px;
+        font-size: 73px;
         line-height: 90px;
         text-align: center;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        
 
+        color: transparent;
         background: linear-gradient(343.85deg, rgba(218, 194, 182, 0.83) 11.42%, rgba(255, 245, 235, 0.83) 89.01%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
         background-clip: text;
         
-        text-shadow: -5px 9px 4px rgba(0, 0, 0, 0.25);
        } 
+    }
+
+    .content{
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+
+        .content__name{
+            max-width: 262px;
+            height: 40px;
+
+            margin-left: 100px;
+
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 135%;
+            letter-spacing: 0.08em;
+            color: rgba(255, 245, 235, 0.9);
+        }
+
+        .content__description{
+            max-width: 440px;
+            height: 72px;
+
+            margin-left: 100px;
+
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 135%;
+            letter-spacing: 0.08em;
+            color: #FFF5EB;
+            text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
+        }
     }
 }
