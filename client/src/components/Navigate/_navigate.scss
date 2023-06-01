@@ -5,8 +5,7 @@ $text-color: #FFF5EB;
 
 @media (max-width: 1440px) {
     .navigation{
-        padding: 0 calc(50% - 620px);
-        margin-top: 40px;
+        padding: 40px calc(50% - 620px) 0;
     }
 
    .menu{

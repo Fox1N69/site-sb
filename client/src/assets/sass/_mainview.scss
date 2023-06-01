@@ -6,14 +6,13 @@
 @media (max-width: 1455px) {
     .home{
         height: 800px;
-        border: 1px solid black;
+
         padding: 0 calc(50% - 990px); 
         
     }
 
     .home__container{
-        height: 100%;
-        border: 2px solid black;
+
         display: flex;
         flex-direction: column;
         gap: 235px;
@@ -24,7 +23,7 @@
         width: 1242px;
         height: 75px;
 
-        margin: 195px 0 0 95px;
+        margin: 160px 0 0 95px;
 
         font-family: 'Wadik';
         font-style: normal;
@@ -41,7 +40,7 @@
     }
 
 
-    .content{
+    .content__text{
         display: flex;
         flex-direction: column;
         gap: 80px;
@@ -52,7 +51,7 @@
 
             margin-left: 100px;
 
-            font-family: 'Roboto';
+            font-family: 'Roboto', sans-serif;
             font-style: normal;
             font-weight: 500;
             font-size: 15px;
@@ -67,7 +66,7 @@
 
             margin-left: 100px;
 
-            font-family: 'Roboto';
+            font-family: 'Roboto', sans-serif;
             font-style: normal;
             font-weight: 600;
             font-size: 18px;
@@ -75,6 +74,70 @@
             letter-spacing: 0.08em;
             color: #FFF5EB;
             text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        
+    }
+
+    .content{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        .content__solider{
+            .solider{
+                position: absolute;
+                top: 260px;
+                left: 576px;
+            }
+        }
+
+        .content__video{
+            display: flex;            
+            flex-direction: row;
+
+            width: 350px;
+            height: 200px;
+
+            margin: 0 101px 81px 0;
+
+            border-radius: 5px;
+
+            background-image: url(../img/video.png);
+
+            .play__icon{
+                width: 30px; 
+                height: 35px; 
+
+                margin: 148px 0 17px 25px;
+
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+
+
+
+            .video__text{
+                width: 135px;
+                height: 14px;
+
+                margin: 160px 20px 20px 140px;
+
+                font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 16px;
+                leading-trim: both;
+                text-edge: cap;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+
+                color: #FFF5EB;
+
+                text-shadow: -3px -3px 4px rgba(0, 0, 0, 0.5), 3px 3px 4px rgba(0, 0, 0, 0.5);
+            }
         }
     }
 }

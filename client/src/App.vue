@@ -2,7 +2,7 @@ import router from './router/index';
 
 <template>
   <nav>
-    <router-link to="about"></router-link>
+   <router-link to="about"></router-link>
   </nav>
   <router-view/>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <div class="title">главное о клубе</div>
+    <div class="about__title">главное о клубе</div>
     <div class="about__container">
       <div class="description">Военно-исторический клуб "Сибирский рубеж" занимается углубленным изучением истории Великой Отечественной Войны.</div>
       <div class="content">
