@@ -7,51 +7,74 @@
     .home{
         height: 800px;
         border: 1px solid black;
+        padding: 0 calc(50% - 990px); 
         
+    }
+
+    .home__container{
+        height: 100%;
+        border: 2px solid black;
+        display: flex;
+        flex-direction: column;
+        gap: 235px;
+
     }
 
     .title{
+        width: 1242px;
+        height: 75px;
+
+        margin: 195px 0 0 95px;
+
+        font-family: 'Wadik';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 73px;
+        line-height: 119.98%;
+
+        color: rgba(218, 194, 182, 0.23);
         
+        background: linear-gradient(7.14deg, rgba(218, 194, 182, 1), rgba(255, 245, 235, 100));
+        background-clip: text;
 
-       .title__h1{
-            width: 1242px;
-            height: 75px;
+        text-shadow: -5px 9px 4px rgba(0, 0, 0, 0.25);
+    }
 
-            margin: 160px 0 0 94px;
 
-            font-family: 'Wadik';
+    .content{
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+
+        .content__name{
+            max-width: 262px;
+            height: 40px;
+
+            margin-left: 100px;
+
+            font-family: 'Roboto';
             font-style: normal;
-            font-weight: 700;
-            font-size: 73px;
-            line-height: 119.98%;
-            /* or 90px */
-
-            text-align: center;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-
-            background: linear-gradient(7.14deg, rgba(218, 194, 182, 0.83) 5.47%, rgba(255, 245, 235, 0.83) 79.53%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-fill-color: transparent;
-        } 
-
-       
-    }
-
-
-    .content__solider{
-        margin: auto;
-        .solider{
-            position: absolute;
-            top: 263px;
-            left: 576px;
+            font-weight: 500;
+            font-size: 15px;
+            line-height: 135%;
+            letter-spacing: 0.08em;
+            color: rgba(255, 245, 235, 0.9);
         }
-        
-    }
 
-   .content{
-    
-   } 
+        .content__description{
+            max-width: 440px;
+            height: 72px;
+
+            margin-left: 100px;
+
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 135%;
+            letter-spacing: 0.08em;
+            color: #FFF5EB;
+            text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
+        }
+    }
 }
