@@ -21,31 +21,25 @@
     }
 
     .title{
-        
-
-       .title__h1{
-        max-width: 1242px;
+        width: 1242px;
         height: 75px;
-        
-        margin-top: 200px ; 
-        //margin-left: 94px;
-        margin-right: calc(50% - 200px);
+
+        margin: 195px 0 0 95px;
 
         font-family: 'Wadik';
         font-style: normal;
         font-weight: 700;
         font-size: 73px;
-        line-height: 90px;
-        text-align: center;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
+        line-height: 119.98%;
 
-        color: transparent;
-        background: linear-gradient(343.85deg, rgba(218, 194, 182, 0.83) 11.42%, rgba(255, 245, 235, 0.83) 89.01%);
-        background-clip: text;
+        color: rgba(218, 194, 182, 0.23);
         
-       } 
+        background: linear-gradient(7.14deg, rgba(218, 194, 182, 1), rgba(255, 245, 235, 100));
+        background-clip: text;
+
+        text-shadow: -5px 9px 4px rgba(0, 0, 0, 0.25);
     }
+
 
     .content{
         display: flex;

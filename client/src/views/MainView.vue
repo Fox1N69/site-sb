@@ -4,13 +4,16 @@
       <Navigation/>
       <div class="home__container">
         <div class="title">
-          <h1 class="title__h1">Сибирский рубежъ</h1>
+          <p class="title__h1">Сибирский рубежъ</p> 
+          <!-- <img src="../assets/img/H1.png" alt=""> -->
         </div>
         
         <div class="content">
             <div class="content__name">Ситниковский отдел Военно Исторического Клуба "Сибирский рубеж"</div>
             <div class="content__description">Военно Исторический Клуб "Сибирский рубеж" занимается углубленным изучением истории Великой Отечественной Войны</div>
-            <div class="content__video"></div>
+            <div class="content__video">
+              
+            </div>
         </div>
       </div>
     </section>

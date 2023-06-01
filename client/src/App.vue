@@ -1,4 +1,5 @@
 import router from './router/index';
+
 <template>
   <nav>
     <router-link to="about"></router-link>
