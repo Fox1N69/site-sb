@@ -1,0 +1,634 @@
+@font-face {
+  font-family: "Wadik";
+  src: url("/src/assets/fonts/Wadik/Wadik.otf");
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("/src/assets/fonts/Roboto/Roboto-Regular.ttf");
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+
+@font-face {
+  font-family: "Roboto-light";
+  src: url("/src/assets/fonts/Roboto/Roboto-Light.ttf");
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background: url("/src/assets/image/backgournd-body.png");
+  background-color: #2c2c2c;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  background: url("/src/assets/image/backround-image.png");
+  background-size: cover;
+}
+
+.container {
+  width: 100%;
+  padding: 0 calc(50% - 631px);
+}
+
+.header {
+  height: 35px;
+  padding-bottom: 17.2%;
+  margin-top: 3.994%;
+
+  font-family: Roboto;
+  font-size: 15px;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+
+.navigation__list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 157px;
+}
+
+.navigation__list > li {
+  color: white;
+}
+
+.navigation__underline {
+  border-bottom: 1px solid #fff8f0;
+  width: 95.5%;
+}
+
+.main__title {
+  text-align: center;
+  text-shadow: -5px 9px 4px rgba(0, 0, 0, 0.25);
+
+  font-family: Wadik;
+  font-size: 75px;
+  font-style: normal;
+  font-weight: 700;
+
+  line-height: 119.984%;
+  letter-spacing: 7.5px;
+  text-transform: uppercase;
+
+  background: linear-gradient(
+    7deg,
+    rgba(218, 194, 182, 0.83) 5.47%,
+    rgba(255, 245, 235, 0.83) 79.53%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.content__main {
+  display: flex;
+  gap: 5px;
+}
+
+.left__content {
+  margin-top: 25.5%;
+  width: 440px;
+  height: 169px;
+
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 60px;
+}
+
+.center__content {
+  width: 324px;
+  height: 614px;
+}
+
+.left__textOne {
+  color: #fff5eb;
+  text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
+  font-family: Roboto;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 135%;
+  letter-spacing: 1.2px;
+}
+
+.left__textTwo {
+  color: #fff8f0;
+  text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
+  font-family: Roboto;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 135%; /* 22.95px */
+  letter-spacing: 1.36px;
+}
+
+.right__content {
+  margin-top: 25.5%;
+  margin-left: 9%;
+
+  border: 1px solid white;
+  width: 350px;
+  height: 200px;
+
+  padding: 149px 22px 16px 33px;
+  display: inline-flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 120px;
+  flex-shrink: 0;
+
+  margin-bottom: 91px;
+}
+
+.btn__play {
+  width: 30px;
+  height: 35px;
+
+  fill: #fff5eb;
+  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
+}
+
+.btn-play__title {
+  display: flex;
+  width: 145px;
+  height: 14px;
+  flex-direction: column;
+  justify-content: center;
+
+  color: #fff5eb;
+  text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5), -3px -3px 4px rgba(0, 0, 0, 0.5);
+  font-family: Roboto;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+}
+
+.about-us {
+  margin-top: 140px;
+}
+
+.about__activity {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+}
+
+.activity__block {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.activity__description {
+  color: #fff8f0;
+  text-align: center;
+
+  font-family: "Roboto-light";
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 130%;
+  letter-spacing: 0.85px;
+}
+
+.about__participants {
+  padding-top: 141px;
+  height: 883px;
+}
+
+.participants {
+  height: 625px;
+
+  margin: 147px 0 150px 214px;
+
+  border: 1px solid white;
+}
+
+.participant__title {
+  width: 390px;
+  height: 112px;
+
+  margin-top: 20px;
+  margin-left: 95px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  .partic__titleOne {
+    color: #d8c3ad;
+
+    font-family: Wadik;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 0%;
+    letter-spacing: 2.5px;
+  }
+
+  .partic__titleTwo {
+    color: #2c2c2c;
+    -webkit-text-stroke: 1px #d8c3ad;
+
+    font-family: Wadik;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 0%;
+    letter-spacing: 2.5px;
+  }
+}
+
+.news {
+  height: 724px;
+}
+
+.news__titles {
+  width: 390px;
+  height: 112px;
+
+  margin-top: 70px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+
+  .news__titleOne {
+    color: #2c2c2c;
+    -webkit-text-stroke: 1px #d8c3ad;
+
+    font-family: Wadik;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 0%;
+    letter-spacing: 2.5px;
+  }
+  .news__titleTwo {
+    color: #d8c3ad;
+
+    font-family: Wadik;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 0%;
+    letter-spacing: 2.5px;
+  }
+}
+
+.news__banner {
+  height: 463px;
+  position: absolute;
+  z-index: -1;
+  width: 99.9%;
+}
+
+.news__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.news__cards {
+  margin-top: 70px;
+
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+}
+
+.new__card {
+  height: 420px;
+  width: 370px;
+  background: #272727;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.25);
+}
+
+.news__card-img {
+  background: url("../image/newcardnohover1.png"), no-repeat;
+  height: 210px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new__btn {
+  display: none;
+}
+
+.news__card-img:hover {
+  background: url("../image/newcardnohover1.png"), no-repeat;
+  .new__btn {
+    display: flex;
+
+    width: 90px;
+    height: 34px;
+
+    border: 1px;
+    border-radius: 1px;
+    background: #d8c3ad;
+    color: #282828;
+
+    align-items: center;
+    justify-content: center;
+    padding: 3px 11px;
+
+    cursor: pointer;
+  }
+}
+
+.new-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+
+  margin: 38.5px 12.5px 49.5px 11px;
+
+  .new-card__title {
+    color: #fff8f0;
+    font-family: Roboto;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 130%;
+    letter-spacing: 1px;
+  }
+
+  .new-card__description {
+    color: rgba(255, 248, 240, 0.8);
+    font-family: Roboto;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    letter-spacing: 0.75px;
+  }
+}
+
+.btn__fullnews {
+  margin-left: 1018px;
+  margin-top: 65.3px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  .fullnews__title {
+    color: #d8c3ad;
+
+    font-family: Roboto;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 130%;
+    letter-spacing: 0.85px;
+  }
+
+  .fullnews__arrow {
+    margin-left: 68%;
+  }
+}
+
+.exhibition {
+  height: 100vh;
+}
+
+.ex__cardbackground {
+  max-width: 1214px;
+
+  height: 604px;
+
+  background: linear-gradient(
+    107deg,
+    rgba(255, 255, 255, 0.04) 2.07%,
+    rgba(255, 255, 255, 0.01) 55.58%
+  );
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(25px);
+}
+
+.exhibition__card {
+  width: 1214px;
+
+  margin-top: 220px;
+
+  height: 604px;
+
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.exhibition__title {
+  width: 486px;
+  height: 112px;
+
+  display: flex;
+  flex-direction: column;
+
+  margin: 60px 0 0 96px;
+
+  .ex-title__textOne {
+    color: #d8c3ad;
+
+    font-family: Wadik;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  .ex-title__textTwo {
+    color: #2c2c2c;
+    -webkit-text-stroke: 1px #d8c3ad;
+
+    font-family: Wadik;
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 700;
+  }
+}
+
+.exhibition__content {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  .ex-content__left {
+    margin-left: 96px;
+    margin-top: 15px;
+  }
+}
+
+.ex-content__right {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+
+  width: 556px;
+
+  margin-top: 60px;
+
+  .ex__text {
+    color: #fff8f0;
+    font-family: Roboto;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 130%;
+    letter-spacing: 5%;
+    text-align: left;
+  }
+}
+
+.bottom__content {
+  display: flex;
+  flex-direction: row;
+  gap: 78px;
+  .ex__btn {
+    width: 242px;
+    height: 60px;
+    background: #d8c3ad;
+    border: 1px solid #d8c3ad;
+    border-radius: 5px;
+
+    color: #1f1f1f;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+  }
+
+  .fullex__btn-text {
+    border: none;
+    background: none;
+
+    color: white;
+  }
+}
+
+.gallery {
+  height: 380px;
+  max-width: 1920px;
+  background: url("../image/gallery-photo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
+  .fullgl__btn {
+    color: #d8c3ad;
+    margin-left: 70%;
+
+    font-family: Roboto;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 130%;
+    letter-spacing: 0.85px;
+  }
+
+  .fullgl__arrow {
+    margin-top: 5px;
+    margin-left: 79%;
+  }
+}
+
+.investors {
+  height: 407px;
+
+  margin-top: 95px;
+  margin-bottom: 104px;
+}
+
+.footer {
+  width: 100%;
+  font-family: Roboto, sans-serif;
+  .footer_container {
+    height: 146px;
+    margin: 80px 12.5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 188px;
+  }
+}
+
+.footer__title-container {
+  margin: 29px 0;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  .footer__title {
+    width: 135px;
+    font-family: "Wadik";
+    font-weight: 700;
+    font-size: 15px;
+  }
+
+  .footer__date {
+    font-family: Roboto;
+    font-weight: 400;
+    margin-left: 10%;
+  }
+}
+
+.footer__menu {
+  font-family: Roboto, sans-serif;
+  display: flex;
+  flex-direction: row;
+  gap: 130px;
+
+  margin-top: 6px;
+  .ul__footer {
+    color: white;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .ul__footerTwo {
+    color: white;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
+.footer__numbers {
+  margin: 35px 0;
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    list-style: none;
+    color: white;
+  }
+}
+
+.footer__social {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  color: white;
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+}

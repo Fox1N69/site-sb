@@ -1,123 +1,229 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Layout from "../layouts/Layout.astro";
+import "../assets/styles/index.scss";
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<svg
-			class="astro-a"
-			width="495"
-			height="623"
-			viewBox="0 0 495 623"
-			fill="none"
-			xmlns="http://www.w3.org/2000/svg"
-			aria-hidden="true"
-		>
-			<path
-				fill-rule="evenodd"
-				clip-rule="evenodd"
-				d="M167.19 364.254C83.4786 364.254 0 404.819 0 404.819C0 404.819 141.781 19.4876 142.087 18.7291C146.434 7.33701 153.027 0 162.289 0H332.441C341.703 0 348.574 7.33701 352.643 18.7291C352.92 19.5022 494.716 404.819 494.716 404.819C494.716 404.819 426.67 364.254 327.525 364.254L264.41 169.408C262.047 159.985 255.147 153.581 247.358 153.581C239.569 153.581 232.669 159.985 230.306 169.408L167.19 364.254ZM160.869 530.172C160.877 530.18 160.885 530.187 160.894 530.195L160.867 530.181C160.868 530.178 160.868 530.175 160.869 530.172ZM136.218 411.348C124.476 450.467 132.698 504.458 160.869 530.172C160.997 529.696 161.125 529.242 161.248 528.804C161.502 527.907 161.737 527.073 161.917 526.233C165.446 509.895 178.754 499.52 195.577 500.01C211.969 500.487 220.67 508.765 223.202 527.254C224.141 534.12 224.23 541.131 224.319 548.105C224.328 548.834 224.337 549.563 224.347 550.291C224.563 566.098 228.657 580.707 237.264 593.914C245.413 606.426 256.108 615.943 270.749 622.478C270.593 621.952 270.463 621.508 270.35 621.126C270.045 620.086 269.872 619.499 269.685 618.911C258.909 585.935 266.668 563.266 295.344 543.933C298.254 541.971 301.187 540.041 304.12 538.112C310.591 533.854 317.059 529.599 323.279 525.007C345.88 508.329 360.09 486.327 363.431 457.844C364.805 446.148 363.781 434.657 359.848 423.275C358.176 424.287 356.587 425.295 355.042 426.275C351.744 428.366 348.647 430.33 345.382 431.934C303.466 452.507 259.152 455.053 214.03 448.245C184.802 443.834 156.584 436.019 136.218 411.348Z"
-				fill="url(#paint0_linear_1805_24383)"></path>
-			<defs>
-				<linearGradient
-					id="paint0_linear_1805_24383"
-					x1="247.358"
-					y1="0"
-					x2="247.358"
-					y2="622.479"
-					gradientUnits="userSpaceOnUse"
-				>
-					<stop stop-opacity="0.9"></stop>
-					<stop offset="1" stop-opacity="0.2"></stop>
-				</linearGradient>
-			</defs>
-		</svg>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
+<Layout title="HomePages">
+  <section class="main">
+    <div class="container">
+      <header class="header">
+        <nav class="navigation">
+          <ul class="navigation__list">
+            <li>Участиники</li>
+            <li>Галерея</li>
+            <li>Новости</li>
+            <li>Выставка</li>
+            <li>Документы</li>
+            <li>Партнеры</li>
+          </ul>
+          <span class="navigation__underline"></span>
+        </nav>
+      </header>
+      <h1 class="main__title">сибирский рубежъ</h1>
+      <div class="content__main">
+        <div class="left__content">
+          <div class="left__textOne">
+            Военно историчейский Клуб "Сибирский рубежъ"
+          </div>
+          <div class="left__textTwo">
+            Военно историчейский Клуб "Сибирский рубежъ" занимается углубленным
+            изучением истории Войн нашей страны
+          </div>
+        </div>
+
+        <div class="center__content">
+          <img src="/src/assets/image/solider.png" alt="" />
+        </div>
+
+        <div class="right__content">
+          <div class="btn__play"></div>
+          <div class="btn-play__title">смотреть видео</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about">
+    <div class="container">
+      <div class="about-us">
+        <div class="about__activity">
+          <div class="activity__block">
+            <img
+              class="activity__icon"
+              src="../src/assets/image/casc.png"
+              alt=""
+            />
+            <div class="activity__description">
+              Восстановление униформы и амуниции солдат Красной Армии и солдат
+              Вермахта
+            </div>
+          </div>
+
+          <div class="activity__block">
+            <img
+              class="activity__icon"
+              src="../src/assets/image/airplan.png"
+              alt=""
+            />
+            <div class="activity__description">
+              Организация военно-исторической реконструкции
+            </div>
+          </div>
+
+          <div class="activity__block">
+            <img src="../src/assets/image/tank.png" alt="" />
+            <div class="activity__description">
+              Участие в выездных военно-патриотических мероприятиях
+            </div>
+          </div>
+
+          <div class="activity__block">
+            <img src="../src/assets/image/worldmap.png" alt="" />
+            <div class="activity__description">
+              Военно-патриотическое воспитание молодежи и современного общества
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
 
-<style>
-	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: white;
-		font-size: 20px;
-		line-height: 1.6;
-	}
-	.astro-a {
-		position: absolute;
-		top: -32px;
-		left: 50%;
-		transform: translatex(-50%);
-		width: 220px;
-		height: auto;
-		z-index: -1;
-	}
-	h1 {
-		font-size: 4rem;
-		font-weight: 700;
-		line-height: 1;
-		text-align: center;
-		margin-bottom: 1em;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		margin-bottom: 2rem;
-		border: 1px solid rgba(var(--accent-light), 25%);
-		background: linear-gradient(rgba(var(--accent-dark), 66%), rgba(var(--accent-dark), 33%));
-		padding: 1.5rem;
-		border-radius: 8px;
-	}
-	.instructions code {
-		font-size: 0.8em;
-		font-weight: bold;
-		background: rgba(var(--accent-light), 12%);
-		color: rgb(var(--accent-light));
-		border-radius: 4px;
-		padding: 0.3em 0.4em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent-light));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 2rem;
-		padding: 0;
-	}
-</style>
+<section class="participants">
+  <div class="participant__title">
+    <div class="partic__titleOne">Наши</div>
+    <div class="partic__titleTwo">Участники</div>
+  </div>
+</section>
+
+<section class="news">
+  <img class="news__banner" src="../src/assets/image/news_banner.png" alt="" />
+  <div class="container">
+    <div class="news__content">
+      <div class="news__titles">
+        <div class="news__titleOne">Гланые</div>
+        <div class="news__titleTwo">Новости</div>
+      </div>
+      <div class="news__cards">
+        <div class="new__card">
+          <div class="news__card-img">
+            <button class="new__btn">Читать</button>
+          </div>
+          <div class="new-card__content">
+            <div class="new-card__title">
+              Lorem ipsum dolor sit amet consectetur
+            </div>
+            <div class="new-card__description">
+              Lorem ipsum dolor sit amet consectetur. Amet pellentesque sed sem
+              gravida sociis faucibus suspendisse.
+            </div>
+          </div>
+        </div>
+        <div class="new__card">
+          <div class="news__card-img">
+            <button class="new__btn">Читать</button>
+          </div>
+          <div class="new-card__title"></div>
+          <div class="new-card__description"></div>
+        </div>
+
+        <div class="new__card">
+          <div class="news__card-img">
+            <button class="new__btn">Читать</button>
+          </div>
+          <div class="new-card__title"></div>
+          <div class="new-card__description"></div>
+        </div>
+      </div>
+      <a href="/news">
+        <div class="btn__fullnews">
+          <div class="fullnews__title">Читать все новости</div>
+          <span class="fullnews__arrow"
+            ><img src="../src/assets/image/arrow-more.png" alt="" /></span
+          >
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="exhibition">
+  <div class="container">
+    <div class="ex__cardbackground">
+      <div class="exhibition__card">
+        <div class="exhibition__title">
+          <div class="ex-title__textOne">Музейная</div>
+          <div class="ex-title__textTwo">Выставка</div>
+        </div>
+        <div class="exhibition__content">
+          <div class="ex-content__left">
+            <img src="../src/assets/image/ex-cask.png" alt="" />
+          </div>
+          <div class="ex-content__right">
+            <div class="ex__text">
+              Lorem ipsum dolor sit amet consectetur. Faucibus tortor tristique
+              at sit nunc fringilla faucibus. Est ac sed sit pharetra turpis.
+              Sed sagittis diam duis varius adipiscing. Ornare morbi quis
+              rhoncus cras varius pellentesque justo vitae feugiat. Sagittis
+              montes tortor consectetur eu felis ipsum gravida. Vitae nisl
+              malesuada duis lectus pharetra nec donec ut aliquam.
+            </div>
+            <div class="bottom__content">
+              <button class="ex__btn">Запись на посещение</button>
+              <div class="fullex__btn">
+                <button class="fullex__btn-text">Подробнее о музее</button>
+                <div class="fullex__arrow"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="fullgl__btn">Смотреть всю галерею</div>
+  <span class="fullgl__arrow">
+    <img src="../src/assets/image/arrow-more.png" />
+  </span>
+</section>
+
+<section class="investors"></section>
+
+<section class="footer">
+  <div class="footer_container">
+    <div class="footer__title-container">
+      <div class="footer__title">Сибирский рубежъ</div>
+      <div class="footer__date">2024</div>
+    </div>
+    <div class="footer__menu">
+      <ul class="ul__footer">
+        <li>Участники</li>
+        <li>Галерея</li>
+        <li>Новости</li>
+      </ul>
+      <ul class="ul__footerTwo">
+        <li>Выставка</li>
+        <li>Документы</li>
+        <li>Партнеры</li>
+      </ul>
+    </div>
+    <div class="footer__numbers">
+      <ul>
+        <li>+79088755347</li>
+        <li>+79088755347</li>
+      </ul>
+    </div>
+    <div class="footer__social">
+      <ul>
+        <li>noah.thompson@example.com</li>
+        <li>noah.thompson@example.com</li>
+      </ul>
+      <div class="social">
+        <img src="" alt="" class="icon-vk" />
+        <div class="social__title">Группа ВК</div>
+      </div>
+    </div>
+  </div>
+</section>
