@@ -19,7 +19,11 @@ import "../assets/styles/index.scss";
           <span class="navigation__underline"></span>
         </nav>
       </header>
-      <h1 class="main__title">сибирский рубежъ</h1>
+      <!--<h1 class="main__title">сибирский рубежъ</h1> -->
+      <div class="main__title">
+        <img src="/src/assets/image/title.png" alt="" width="1200px" />
+      </div>
+      <div class="br"></div>
       <div class="content__main">
         <div class="left__content">
           <div class="left__textOne">
@@ -32,11 +36,24 @@ import "../assets/styles/index.scss";
         </div>
 
         <div class="center__content">
-          <img src="/src/assets/image/solider.png" alt="" />
+          <img
+            src="/src/assets/image/solider.png"
+            alt=""
+            style="position: absolute; z-index: 1;"
+          />
         </div>
 
         <div class="right__content">
-          <div class="btn__play"></div>
+          <div class="btn__play">
+            <a href="">
+              <img
+                src="/src/assets/image/play_btn.png"
+                alt=""
+                width="30px"
+                height="35px"
+              />
+            </a>
+          </div>
           <div class="btn-play__title">смотреть видео</div>
         </div>
       </div>
@@ -227,3 +244,5 @@ import "../assets/styles/index.scss";
     </div>
   </div>
 </section>
+
+<style></style>
