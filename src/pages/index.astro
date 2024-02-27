@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import TeamLayout from "../layouts/TeamLayout.astro";
 import "../assets/styles/index.scss";
+import "../assets/styles/_resolution.scss";
 ---
 
 <Layout title="HomePages">
@@ -10,19 +11,19 @@ import "../assets/styles/index.scss";
       <header class="header">
         <nav class="navigation">
           <ul class="navigation__list">
-            <li>Участиники</li>
-            <li>Галерея</li>
-            <li>Новости</li>
-            <li>Выставка</li>
-            <li>Документы</li>
-            <li>Партнеры</li>
+            <li><a href="#team">Участиники</a></li>
+            <li><a href="/gallery">Галерея</a></li>
+            <li><a href="/news">Новости</a></li>
+            <li><a href="/museum">Выставка</a></li>
+            <li><a href="/documents">Документы</a></li>
+            <li><a href="/investors">Партнеры</a></li>
           </ul>
           <span class="navigation__underline"></span>
         </nav>
       </header>
       <!--<h1 class="main__title">сибирский рубежъ</h1> -->
       <div class="main__title">
-        <img src="/title.png" alt="" width="1200px" />
+        <!--  <img src="/title.png" alt="" width="1200px" /> -->
       </div>
       <div class="br"></div>
       <div class="content__main">
@@ -47,12 +48,7 @@ import "../assets/styles/index.scss";
         <div class="right__content">
           <div class="btn__play">
             <a href="">
-              <img
-                src="/play_btn.png"
-                alt=""
-                width="30px"
-                height="35px"
-              />
+              <img src="/play_btn.png" alt="" width="30px" height="35px" />
             </a>
           </div>
           <div class="btn-play__title">смотреть видео</div>
@@ -74,11 +70,7 @@ import "../assets/styles/index.scss";
           </div>
 
           <div class="activity__block">
-            <img
-              class="activity__icon"
-              src="/airplan.png"
-              alt=""
-            />
+            <img class="activity__icon" src="/airplan.png" alt="" />
             <div class="activity__description">
               Организация военно-исторической реконструкции
             </div>
@@ -103,7 +95,7 @@ import "../assets/styles/index.scss";
   </section>
 </Layout>
 
-<section class="participants">
+<section class="participants" id="team">
   <div class="participant__title">
     <div class="partic__titleOne">Наши</div>
     <div class="partic__titleTwo">Участники</div>
@@ -206,7 +198,19 @@ import "../assets/styles/index.scss";
   </span>
 </section>
 
-<section class="investors"></section>
+<section class="investors">
+  <div class="container">
+    <div class="investors__card-content">
+      <div class="investors__cards">
+        <div class="invest__card"><img src="" alt="" /></div>
+        <div class="invest__card"><img src="" alt="" /></div>
+        <div class="invest__card"><img src="" alt="" /></div>
+        <div class="invest__card"><img src="" alt="" /></div>
+        <div class="invest__card"><img src="" alt="" /></div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="footer">
   <div class="footer_container">
