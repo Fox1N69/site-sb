@@ -20,7 +20,7 @@ a {
 }
 
 body {
-  background: url("/src/assets/image/backgournd-body.png");
+  background: url("/backgournd-body.png");
   background-color: #2c2c2c;
 }
 
@@ -29,7 +29,7 @@ body {
 
   display: flex;
   flex-direction: column;
-  background: url("/src/assets/image/backround-image.png");
+  background: url("/backround-image.png");
   background-repeat: no-repeat;
 }
 
@@ -142,7 +142,7 @@ body {
 }
 
 .right__content {
-  background: url("../image/video.png");
+  background: url("/video.png");
 
   box-shadow: 10px 9px 33px -5px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 10px 9px 33px -5px rgba(0, 0, 0, 0.75);
@@ -330,7 +330,7 @@ body {
 }
 
 .news__card-img {
-  background: url("../image/newcardnohover1.png"), no-repeat;
+  background: url("/newcardnohover1.png"), no-repeat;
   height: 210px;
 
   display: flex;
@@ -343,7 +343,7 @@ body {
 }
 
 .news__card-img:hover {
-  background: url("../image/newcardnohover1.png"), no-repeat;
+  background: url("/newcardnohover1.png"), no-repeat;
   .new__btn {
     display: flex;
 
@@ -533,7 +533,7 @@ body {
 .gallery {
   height: 380px;
   max-width: 1920px;
-  background: url("../image/gallery-photo.png");
+  background: url("/gallery-photo.png");
   background-size: cover;
   background-repeat: no-repeat;
 

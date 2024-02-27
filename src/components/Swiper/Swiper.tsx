@@ -43,7 +43,7 @@ export default function MySwiper() {
       <SwiperSlide className="swiper__slide">
         <div className="fullname">Максимович Вячеслав</div>
         <div className="slide__left">
-          <img src="/src/assets/image/Vacheclav.png" alt="" />
+          <img src="/Vacheclav.png" alt="" />
         </div>
         <div className="slide__right">
           <div className="team__info">
