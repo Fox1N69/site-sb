@@ -230,8 +230,6 @@ body {
   height: 625px;
 
   margin: 147px 0 150px 214px;
-
-  border: 1px solid white;
 }
 
 .participant__title {
@@ -541,7 +539,7 @@ body {
 
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
 
   .fullgl__btn {
     color: #d8c3ad;
