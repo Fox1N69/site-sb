@@ -3,7 +3,7 @@ import React from "react";
 import "swiper/css";
 import SlideButtons from "./swiper-button";
 import anime from "animejs";
-import "/src/assets/styles/swiper.scss";
+import "@/assets/styles/swiper.scss";
 
 export default function MySwiper() {
   const props = {
