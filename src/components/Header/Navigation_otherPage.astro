@@ -1,0 +1,53 @@
+---
+import "@/assets/styles/index.scss";
+---
+
+<header class="header">
+  <nav class="navigation">
+    <ul class="navigation__list">
+      <li><a href="#team">Участиники</a></li>
+      <li><a href="/gallery">Галерея</a></li>
+      <li><a href="/news">Новости</a></li>
+      <li><a href="/museum">Выставка</a></li>
+      <li><a href="/documents">Документы</a></li>
+      <li><a href="/investors">Партнеры</a></li>
+    </ul>
+    <span class="navigation__underline"></span>
+  </nav>
+</header>
+
+<style lang="scss" scoped>
+  .header {
+    height: 35px;
+    padding-bottom: 123.4px;
+
+    font-family: Roboto;
+    font-size: 15px;
+  }
+
+  .navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+  }
+
+  a {
+    color: black;
+  }
+
+  .navigation__list {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 200px;
+  }
+
+  .navigation__list > li {
+    color: black;
+  }
+
+  .navigation__underline {
+    border-bottom: 1px solid black;
+    width: 95.5%;
+  }
+</style>

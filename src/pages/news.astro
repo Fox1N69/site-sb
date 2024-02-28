@@ -1,7 +1,67 @@
 ---
-
+import NavBar from "../components/Header/Navigation_otherPage.astro";
+import Layout from "../layouts/Layout.astro";
+import "../assets/styles/index.scss";
+import Footer from "../components/Footer/Footer.astro";
 ---
 
-<section>
-  <h1>Здесь будет страница новостей</h1>
-</section>
+<Layout title="NewsLayout">
+  <div class="news__header">
+    <div class="news__container">
+      <NavBar />
+      <div class="text__container">
+        <h1 class="news__title">Новости нашего клуба</h1>
+        <p class="news__description">
+          Lorem ipsum dolor sit amet consectetur. Odio consequat quis quis elit
+          eu. Tempus facilisis semper nullam donec sit sed ultricies viverra.
+          Congue diam purus risus praesent elit.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="news__section">
+    
+  </section>
+
+  <Footer />
+</Layout>
+
+<section class="news__page"></section>
+
+<style lang="scss" scoped>
+  .news__container {
+    padding: 0 calc(50% - 749px);
+  }
+
+  .news__header {
+    height: 460px;
+    background-color: white;
+
+    padding-top: 40px;
+  }
+
+  .text__container {
+    width: 533px;
+    min-height: 231px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    .news__title {
+      width: 377px;
+
+      font-family: Montserrat, sans-serif;
+      font-size: 50px;
+      font-weight: bold;
+    }
+
+    .news__description {
+      width: 533px;
+      min-height: 79px;
+      font-family: Montserrat, sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 150%;
+    }
+  }
+</style>

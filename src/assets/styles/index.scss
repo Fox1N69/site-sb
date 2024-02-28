@@ -9,6 +9,7 @@
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 @font-face {
   font-family: "Roboto-light";
@@ -25,21 +26,12 @@ body {
 }
 
 @media (max-width: 1940px) {
-  .main {
-    height: 925px;
-
-    display: flex;
-    flex-direction: column;
-    background: url("/backround-image.png");
-    background-repeat: no-repeat;
-  }
-
   .container {
     width: 100%;
     padding: 0 calc(50% - 631px);
   }
 
-  .header {
+  /*.header {
     height: 35px;
     padding-bottom: 17.2%;
     margin-top: 3.994%;
@@ -68,7 +60,7 @@ body {
   .navigation__underline {
     border-bottom: 1px solid #fff8f0;
     width: 95.5%;
-  }
+  }*/
 
   .main__title {
   }
