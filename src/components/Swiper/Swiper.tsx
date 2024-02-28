@@ -64,7 +64,7 @@ export default function MySwiper() {
       <SwiperSlide className="swiper__slide">
         <div className="fullname">Пинигин Станислав</div>
         <div className="slide__left">
-          <img src="/src/assets/img/video.png" alt="" />
+          <img src="/video.png" alt="" />
         </div>
         <div className="slide__right">
           <div className="team__info">
@@ -105,7 +105,7 @@ export default function MySwiper() {
 
       <SwiperSlide className="swiper__slide">
         <div className="slide__left">
-          <img src="/src/assets/img/video.png" alt="" />
+          <img src="/video.png" alt="" />
         </div>
         <div className="slide__right">
           <div className="team__info">
