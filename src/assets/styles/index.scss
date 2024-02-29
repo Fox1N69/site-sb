@@ -444,17 +444,20 @@ body {
     height: 100vh;
   }
 
+  .smoke-ex-content {
+  }
+
   .smoke-ex {
     position: absolute;
     z-index: 0;
     right: 0;
-    top: 309%;
   }
 
   .smoke-ex-l {
     position: absolute;
     z-index: 0;
     left: 0;
+    top: 330%;
   }
 
   .ex__cardbackground {
