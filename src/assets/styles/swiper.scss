@@ -100,7 +100,7 @@
   height: 327px;
   margin: 25px 0 18px 0;
   grid-area: slideright;
-  margin-left: 50px;
+  margin-left: 25px;
 }
 
 .slide__left {
@@ -124,7 +124,7 @@
       opacity: 0.9;
     }
 
-    margin-left: 80px;
+    margin-left: 120px;
   }
 }
 
@@ -160,7 +160,8 @@
     }
 
     .team__info_discription {
-      height: 275px;
+      max-height: 275px;
+      max-width: 256px;
 
       font-family: "Roboto", sans-serif;
       font-style: normal;
@@ -187,5 +188,22 @@
 .swiper-button-next {
   &:hover {
     cursor: pointer;
+  }
+}
+
+@media (max-width: 1500px) {
+  .swiper-slide-next {
+    width: 400px !important;
+    .slide__right {
+      display: none;
+    }
+
+    .slide__left {
+      img {
+        opacity: 0.9;
+      }
+
+      margin-left: 60px;
+    }
   }
 }

@@ -8,11 +8,11 @@ import NavBar from "@/components/Header/Navigation.astro";
 ---
 
 <Layout title="HomePages">
-    <section class="main">
-      <main>
-        <div class="container">
-          <NavBar />
-          <!-- <header class="header">
+  <section class="main">
+    <main>
+      <div class="container">
+        <NavBar />
+        <!-- <header class="header">
             <nav class="navigation">
               <ul class="navigation__list">
                 <li><a href="#team">Участиники</a></li>
@@ -25,40 +25,46 @@ import NavBar from "@/components/Header/Navigation.astro";
               <span class="navigation__underline"></span>
             </nav>
           </header> -->
-          <!--<h1 class="main__title">сибирский рубежъ</h1> -->
-          <div class="main__title">
-            <img src="/title.png" alt="" width="1200px" />
+        <!--<h1 class="main__title">сибирский рубежъ</h1> -->
+        <div class="main__title">
+          <img src="/title.png" alt="" width="1200px" />
+        </div>
+        <div class="br"></div>
+        <div class="content__main">
+          <div class="left__content">
+            <div class="left__textOne">
+              Военно историчейский Клуб "Сибирский рубежъ"
+            </div>
+            <div class="left__textTwo">
+              Военно историчейский Клуб "Сибирский рубежъ" занимается
+              углубленным изучением истории Войн нашей страны
+            </div>
           </div>
-          <div class="br"></div>
-          <div class="content__main">
-            <div class="left__content">
-              <div class="left__textOne">
-                Военно историчейский Клуб "Сибирский рубежъ"
-              </div>
-              <div class="left__textTwo">
-                Военно историчейский Клуб "Сибирский рубежъ" занимается
-                углубленным изучением истории Войн нашей страны
-              </div>
+          <div class="center__content">
+            <img
+              src="/solider.png"
+              alt=""
+              style="position: absolute; z-index: 1;"
+            />
+          </div>
+          <div class="right__content">
+            <div class="btn__play">
+              <a
+                href="https://vk.com/video_ext.php?oid=-80040324&id=456294285&hash=7d30863e53f7a586"
+              >
+                <img src="/play_btn.png" alt="" width="30px" height="35px" />
+              </a>
             </div>
-            <div class="center__content">
-              <img
-                src="/solider.png"
-                alt=""
-                style="position: absolute; z-index: 1;"
-              />
-            </div>
-            <div class="right__content">
-              <div class="btn__play">
-                <a href="">
-                  <img src="/play_btn.png" alt="" width="30px" height="35px" />
-                </a>
-              </div>
+            <a
+              href="https://vk.com/video_ext.php?oid=-80040324&id=456294285&hash=7d30863e53f7a586"
+            >
               <div class="btn-play__title">смотреть видео</div>
-            </div>
+            </a>
           </div>
         </div>
-      </main>
-    </section>
+      </div>
+    </main>
+  </section>
 
   <section class="about">
     <div class="container">
@@ -173,12 +179,12 @@ import NavBar from "@/components/Header/Navigation.astro";
           </div>
           <div class="ex-content__right">
             <div class="ex__text">
-              Lorem ipsum dolor sit amet consectetur. Faucibus tortor tristique
-              at sit nunc fringilla faucibus. Est ac sed sit pharetra turpis.
-              Sed sagittis diam duis varius adipiscing. Ornare morbi quis
-              rhoncus cras varius pellentesque justo vitae feugiat. Sagittis
-              montes tortor consectetur eu felis ipsum gravida. Vitae nisl
-              malesuada duis lectus pharetra nec donec ut aliquam.
+              На данной выставке представлены экспозиции по таким эпохам как:
+              Первая мировая война, годы гражданской войны и крестьянского
+              восстания на юге Тюменской области, период Советско-финской войны,
+              годы Великой отечественной войны. Имеются несколько манекенов в
+              форме одежды на начало и второй период войны. Так же в начале
+              формирования экспонаты на послевоенный период уже Советской армии.
             </div>
             <div class="bottom__content">
               <button class="ex__btn">Запись на посещение</button>
@@ -262,5 +268,4 @@ import NavBar from "@/components/Header/Navigation.astro";
     background: url("/backround-image.png");
     background-repeat: no-repeat;
   }
-  
 </style>

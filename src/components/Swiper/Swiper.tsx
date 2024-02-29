@@ -13,8 +13,18 @@ export default function MySwiper() {
     navigation: {
       nextEl: ".button-next-slide",
     },
-    slidesPerView: 3,
     spaceBetween: 3,
+    breakpoints: {
+      320: {
+        slidesPerView: 1,
+      },
+      1350: {
+        slidesPerView: 2,
+      },
+      1500: {
+        slidesPerView: 3,
+      },
+    },
   };
 
   return (
@@ -64,7 +74,7 @@ export default function MySwiper() {
       <SwiperSlide className="swiper__slide">
         <div className="fullname">Пинигин Станислав</div>
         <div className="slide__left">
-          <img src="/video.png" alt="" />
+          <img src="" alt="" />
         </div>
         <div className="slide__right">
           <div className="team__info">

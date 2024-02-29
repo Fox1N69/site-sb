@@ -646,3 +646,37 @@
     }
   }
 }
+
+@media (max-width: 1400px) {
+  .about__activity {
+    gap: 10px;
+  }
+
+  .btn__fullnews {
+    margin-left: 930px;
+    margin-top: 65.3px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .fullnews__title {
+      color: #d8c3ad;
+
+      font-family: Roboto;
+      font-size: 17px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 130%;
+      letter-spacing: 0.85px;
+    }
+
+    .fullnews__arrow {
+      margin-left: 140px;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  
+}
