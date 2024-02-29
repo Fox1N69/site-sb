@@ -1,5 +1,4 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import React from "react";
 import "swiper/css";
 import SlideButtons from "./swiper-button";
 import anime from "animejs";
