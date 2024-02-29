@@ -1,7 +1,6 @@
 @media (min-width: 200px) and (max-width: 470px) {
   .main {
-    max-height: 100vh;
-
+    height: 100svh !important;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -107,7 +106,6 @@
   .center__content-mb {
     width: 239px;
     margin-right: 5%;
-
     img {
       bottom: 0;
     }
