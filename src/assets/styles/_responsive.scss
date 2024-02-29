@@ -107,7 +107,8 @@
     width: 239px;
     margin-right: 5%;
     img {
-      bottom: 0;
+      position: absolute;
+      bottom: 0px;
     }
   }
 
@@ -136,10 +137,6 @@
   .right__content {
     width: 163.72px;
     height: 163.72px;
-
-    background-image: url("/public/video-mb.png");
-    background-repeat: no-repeat;
-    background-size: cover;
 
     z-index: 2;
   }
