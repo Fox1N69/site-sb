@@ -18,14 +18,10 @@
 
   .header {
     height: 33px;
-    padding-bottom: 145px;
-    margin-top: 55px;
     width: 341px;
-  }
 
-  .main__title-mobile {
-    align-items: center;
-    width: 341.38px;
+    padding-bottom: 110px;
+    margin-top: 55px;
   }
 
   .navigation {
@@ -69,6 +65,10 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }*/
+  .main__title-mobile {
+    align-items: center;
+    width: 341.38px;
+  }
 
   .main__title {
     display: none;
