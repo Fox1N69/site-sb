@@ -139,6 +139,10 @@
     height: 163.72px;
 
     z-index: 2;
+    a {
+      background-image: url("/video-mb.png");
+      background-size: cover;
+    }
   }
 
   .btn__play {
