@@ -7,7 +7,7 @@ import "@/assets/styles/swiper.scss";
 
 export default function MySwiper() {
   const props = {
-    loop: false,
+    loop: true,
     effect: "fade",
     speed: 1000,
     navigation: {
