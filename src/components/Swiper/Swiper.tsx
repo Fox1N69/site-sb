@@ -20,7 +20,7 @@ export default function MySwiper() {
       1350: {
         slidesPerView: 2,
       },
-      1500: {
+      1450: {
         slidesPerView: 3,
       },
     },
