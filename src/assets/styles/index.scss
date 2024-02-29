@@ -327,12 +327,15 @@ body {
   }
 
   .news__card-img {
-    background: url("/newcardnohover1.png"), no-repeat;
     height: 210px;
 
     display: flex;
     justify-content: center;
     align-items: center;
+    img {
+      position: absolute;
+      z-index: 0;
+    }
   }
 
   .new__btn {
@@ -340,7 +343,6 @@ body {
   }
 
   .news__card-img:hover {
-    background: url("/newcardnohover1.png"), no-repeat;
     .new__btn {
       display: flex;
 
@@ -355,6 +357,8 @@ body {
       align-items: center;
       justify-content: center;
       padding: 3px 11px;
+
+      z-index: 1;
 
       cursor: pointer;
     }

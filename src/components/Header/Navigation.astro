@@ -2,10 +2,25 @@
 import "@/assets/styles/index.scss";
 ---
 
+<script is:inline lang="js">
+  //1412
+  function scrollToCoordinates(x, y) {
+    window.scrollTo({
+      top: y,
+      left: x,
+      behavior: "smooth",
+    });
+  }
+</script>
+
 <header class="header">
   <nav class="navigation">
     <ul class="navigation__list">
-      <li><a href="#team">Участиники</a></li>
+      <li>
+        <a href="#" id="scrollButton" onclick="scrollToCoordinates(0, 1412)"
+          >Участиники</a
+        >
+      </li>
       <li><a href="/gallery">Галерея</a></li>
       <li><a href="/news">Новости</a></li>
       <li><a href="/museum">Выставка</a></li>

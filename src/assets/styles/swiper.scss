@@ -191,6 +191,23 @@
   }
 }
 
+.swiper-btns {
+  button {
+    background: none;
+    border: none;
+    :hover {
+      cursor: pointer;
+    }
+  }
+  #next-arrow-img {
+    transform: rotate(180deg);
+  }
+
+  display: flex;
+  flex-direction: row;
+  gap: 50%;
+}
+
 @media (max-width: 1500px) {
   .swiper-slide-next {
     width: 400px !important;

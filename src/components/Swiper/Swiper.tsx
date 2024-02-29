@@ -1,6 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import SlideButtons from "./swiper-button";
+import SlideButtonsNext from "./swiper-button-next";
 import anime from "animejs";
 import "@/assets/styles/swiper.scss";
 
@@ -11,6 +12,7 @@ export default function MySwiper() {
     speed: 1000,
     navigation: {
       nextEl: ".button-next-slide",
+      prevEL: ".button-prev.slide",
     },
     spaceBetween: 3,
     breakpoints: {
@@ -48,7 +50,6 @@ export default function MySwiper() {
       }}
     >
       {/*Slide 1*/}
-
       <SwiperSlide className="swiper__slide">
         <div className="fullname">Максимович Вячеслав</div>
         <div className="slide__left">
