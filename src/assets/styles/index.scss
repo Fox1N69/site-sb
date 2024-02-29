@@ -93,6 +93,29 @@ body {
     z-index: 1;
   }
 
+  .smoke1 {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    bottom: 29px;
+    opacity: 0.7;
+  }
+
+  .smoke2 {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: 29px;
+    transform: rotate();
+  }
+
+  .smoke3 {
+    position: absolute;
+    z-index: 1;
+    bottom: 29px;
+    left: 391px;
+  }
+
   .content__main {
     margin-top: 45px;
     display: flex;
@@ -419,6 +442,19 @@ body {
 
   .exhibition {
     height: 100vh;
+  }
+
+  .smoke-ex {
+    position: absolute;
+    z-index: 0;
+    right: 0;
+    top: 309%;
+  }
+
+  .smoke-ex-l {
+    position: absolute;
+    z-index: 0;
+    left: 0;
   }
 
   .ex__cardbackground {
