@@ -29,9 +29,12 @@ import NavBar from "@/components/Header/Navigation.astro";
         <div class="main__title">
           <img src="/title.png" alt="" width="1200px" />
         </div>
-        <img class="smoke1" src="/smoke1.png" style="z-index: 2" />
-        <img src="/smoke3.png" alt="" class="smoke3" />
-        <img class="smoke2" src="/smoke2.png" alt="" />
+        <div class="main__title-mobile">
+          <img src="/h1-mobile.png" alt="" width="341.38px" />
+        </div>
+        <img id="smoke" class="smoke1" src="/smoke1.png" style="z-index: 2" />
+        <img id="smoke" src="/smoke3.png" alt="" class="smoke3" />
+        <img id="smoke" class="smoke2" src="/smoke2.png" alt="" />
         <div class="content__main">
           <div class="left__content">
             <div class="left__textOne">
@@ -50,6 +53,15 @@ import NavBar from "@/components/Header/Navigation.astro";
               style="position: absolute; z-index: 1;"
             />
           </div>
+
+          <div class="center__content-mb">
+            <img
+              src="/solider-mb.png"
+              alt=""
+              style="position: absolute; z-index: 0;"
+            />
+          </div>
+
           <div class="right__content">
             <div class="btn__play">
               <a

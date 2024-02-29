@@ -1,11 +1,16 @@
-@media (min-width: 400px) and (max-width: 1000px) {
+@media (min-width: 200px) and (max-width: 470px) {
   .main {
-    height: 700px;
+    max-height: 100vh;
 
     display: flex;
     flex-direction: column;
+    align-items: center;
+    align-content: center;
+
     background: url("/backround-image.png");
     background-repeat: no-repeat;
+
+    padding: 0 4.2%;
   }
 
   .container {
@@ -13,16 +18,15 @@
   }
 
   .header {
-    height: 35px;
-    padding-bottom: 17.2%;
-    margin-top: 3.994%;
-
-    font-family: Roboto;
-    font-size: 15px;
+    height: 33px;
+    padding-bottom: 145px;
+    margin-top: 55px;
+    width: 341px;
   }
 
-  .main__title {
-    background: url("/public/h1-mobile.png");
+  .main__title-mobile {
+    align-items: center;
+    width: 341.38px;
   }
 
   .navigation {
@@ -32,10 +36,7 @@
   }
 
   .navigation__list {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    gap: 157px;
+    display: none !important;
   }
 
   .navigation__list > li {
@@ -71,39 +72,54 @@
 }*/
 
   .main__title {
-    position: absolute;
-    z-index: 1;
+    display: none;
   }
 
   .content__main {
-    margin-top: 45px;
+    margin-top: 34px;
     display: flex;
-    gap: 5px;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    gap: 25px;
+  }
+
+  #smoke {
+    display: none;
   }
 
   .left__content {
-    margin-top: 25.5%;
-    width: 440px;
+    margin-top: 0px;
+    width: 280px;
     height: 169px;
 
     display: inline-flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 60px;
+    text-align: center;
+    gap: 25px;
+
+    z-index: 2;
   }
 
   .center__content {
-    width: 324px;
-    height: 614px;
+    display: none;
+  }
+  .center__content-mb {
+    width: 239px;
+    margin-right: 5%;
+
+    img {
+      bottom: 0;
+    }
   }
 
   .left__textOne {
     color: #fff5eb;
     text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
     font-family: Roboto;
-    font-size: 15px;
+    font-size: 13px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: normal;
     line-height: 135%;
     letter-spacing: 1.2px;
   }
@@ -112,7 +128,7 @@
     color: #fff8f0;
     text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5);
     font-family: Roboto;
-    font-size: 17px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 135%; /* 22.95px */
@@ -120,57 +136,26 @@
   }
 
   .right__content {
-    background: url("/video.png");
+    width: 163.72px;
+    height: 163.72px;
 
-    box-shadow: 10px 9px 33px -5px rgba(0, 0, 0, 0.75);
-    -webkit-box-shadow: 10px 9px 33px -5px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 9px 33px -5px rgba(0, 0, 0, 0.75);
+    background-image: url("/public/video-mb.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 
-    margin-top: 25.5%;
-    margin-left: 9%;
-
-    border-radius: 4px;
-    width: 350px;
-    height: 200px;
-
-    padding: 149px 22px 16px 33px;
-    display: inline-flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 120px;
-    flex-shrink: 0;
-
-    margin-bottom: 91px;
+    z-index: 2;
   }
 
   .btn__play {
-    width: 30px;
-    height: 35px;
-
-    fill: #fff5eb;
-    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
+    display: none;
   }
 
   .btn-play__title {
-    display: flex;
-    width: 145px;
-    height: 14px;
-    flex-direction: column;
-    justify-content: center;
-
-    color: #fff5eb;
-    text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.5),
-      -3px -3px 4px rgba(0, 0, 0, 0.5);
-    font-family: Roboto;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    letter-spacing: 0.75px;
-    text-transform: uppercase;
+    display: none;
   }
 
   .about-us {
+    display: none;
     margin-top: 140px;
   }
 
@@ -206,6 +191,7 @@
   }
 
   .participants {
+    display: none;
     height: 625px;
 
     margin: 147px 0 150px 214px;
@@ -246,6 +232,7 @@
   }
 
   .news {
+    display: none;
     height: 724px;
   }
 
@@ -396,6 +383,7 @@
   }
 
   .exhibition {
+    display: none;
     height: 100vh;
   }
 
@@ -516,9 +504,7 @@
     background-size: cover;
     background-repeat: no-repeat;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    display: none;
 
     .fullgl__btn {
       color: #d8c3ad;
@@ -563,88 +549,6 @@
       height: 220px;
     }
   }
-
-  .footer {
-    border: 1px solid #1c1c1c;
-    background-color: #1c1c1c;
-    background-size: cover;
-    width: 100%;
-    font-family: Roboto, sans-serif;
-    .footer_container {
-      height: 146px;
-      margin: 80px 12.5%;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      gap: 188px;
-    }
-  }
-
-  .footer__title-container {
-    margin: 29px 0;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    .footer__title {
-      width: 135px;
-      font-family: "Wadik";
-      font-weight: 700;
-      font-size: 15px;
-    }
-
-    .footer__date {
-      font-family: Roboto;
-      font-weight: 400;
-      margin-left: 10%;
-    }
-  }
-
-  .footer__menu {
-    font-family: Roboto, sans-serif;
-    display: flex;
-    flex-direction: row;
-    gap: 130px;
-
-    margin-top: 6px;
-    .ul__footer {
-      color: white;
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
-    .ul__footerTwo {
-      color: white;
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-    }
-  }
-
-  .footer__numbers {
-    margin: 35px 0;
-    ul {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      list-style: none;
-      color: white;
-    }
-  }
-
-  .footer__social {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    color: white;
-    ul {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-    }
-  }
 }
 
 @media (max-width: 1400px) {
@@ -678,5 +582,4 @@
 }
 
 @media (max-width: 1200px) {
-  
 }

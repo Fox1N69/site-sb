@@ -1,5 +1,6 @@
 ---
-import "@/assets/styles/index.scss";
+import "@styles/index.scss";
+import "@styles/_responsive.scss";
 ---
 
 <script is:inline lang="js">
@@ -32,38 +33,40 @@ import "@/assets/styles/index.scss";
 </header>
 
 <style lang="scss" scoped>
-  .header {
-    height: 35px;
-    padding-bottom: 17.2%;
-    margin-top: 3.994%;
+  @media (min-width: 1444px) {
+    .header {
+      height: 35px;
+      padding-bottom: 17.2%;
+      margin-top: 3.994%;
 
-    font-family: Roboto;
-    font-size: 15px;
-  }
+      font-family: Roboto;
+      font-size: 15px;
+    }
 
-  .navigation {
-    display: flex;
-    flex-direction: column;
-    gap: 17px;
-  }
+    .navigation {
+      display: flex;
+      flex-direction: column;
+      gap: 17px;
+    }
 
-  .navigation__list {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    gap: 157px;
-  }
+    .navigation__list {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      gap: 157px;
+    }
 
-  a {
-    color: #fff8f0;
-  }
+    a {
+      color: #fff8f0;
+    }
 
-  .navigation__list > li {
-    color: #fff8f0;
-  }
+    .navigation__list > li {
+      color: #fff8f0;
+    }
 
-  .navigation__underline {
-    border-bottom: 1px solid #fff8f0;
-    width: 95.5%;
+    .navigation__underline {
+      border-bottom: 1px solid #fff8f0;
+      width: 95.5%;
+    }
   }
 </style>
