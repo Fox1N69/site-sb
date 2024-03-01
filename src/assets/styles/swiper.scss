@@ -1,4 +1,7 @@
 @media (min-width: 1500px) {
+  .swiper-pagination {
+    display: none;
+  }
   .swiper-slide-active {
     .fullname {
       display: block;

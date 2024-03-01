@@ -554,7 +554,7 @@
   }
 }
 
-@media (min-width: 1400px) {
+@media (max-width: 1400px) {
   .about__activity {
     gap: 10px;
   }
@@ -584,5 +584,6 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1000px) {
+  
 }
