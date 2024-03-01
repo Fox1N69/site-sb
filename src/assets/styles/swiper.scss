@@ -224,3 +224,19 @@
     }
   }
 }
+
+@media (min-width: 345px) and (max-width: 600px) {
+  .team {
+    margin-left: 2.5%;
+  }
+  .slide__right {
+    display: none;
+  }
+
+  .swiper-wrapper {
+    gap: 0px;
+  }
+  .swiper-btns {
+    gap: 75%;
+  }
+}
