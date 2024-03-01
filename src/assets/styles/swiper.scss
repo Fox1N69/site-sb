@@ -1,3 +1,65 @@
+@media (min-width: 1500px) {
+  .swiper-slide-active {
+    .fullname {
+      display: block;
+      color: white;
+
+      font-family: "Roboto", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 23px;
+      letter-spacing: 0.05em;
+    }
+
+    .team__info {
+      width: 256px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 29px;
+
+      .team__info_rank {
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 23px;
+        letter-spacing: 0.05em;
+
+        color: white;
+      }
+
+      .team__info_discription {
+        max-height: 275px;
+        max-width: 256px;
+
+        font-family: "Roboto", sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 17px;
+        line-height: 130%;
+
+        letter-spacing: 0.05em;
+
+        color: white;
+      }
+    }
+  }
+
+  .slide__right {
+    width: 240px;
+    height: 327px;
+    margin: 25px 0 18px 0;
+    grid-area: slideright;
+    margin-left: 25px;
+  }
+}
+
+:root {
+  --swiper-pagination-color: #d8c3ad;
+}
+
 .team {
   max-height: 465px;
   margin-left: 95px;
@@ -95,14 +157,6 @@
   letter-spacing: 0.05em;
 }
 
-.slide__right {
-  width: 240px;
-  height: 327px;
-  margin: 25px 0 18px 0;
-  grid-area: slideright;
-  margin-left: 25px;
-}
-
 .slide__left {
   img {
     width: 350px;
@@ -125,54 +179,6 @@
     }
 
     margin-left: 120px;
-  }
-}
-
-.swiper-slide-active {
-  .fullname {
-    display: block;
-    color: white;
-
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 23px;
-    letter-spacing: 0.05em;
-  }
-
-  .team__info {
-    width: 256px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 29px;
-
-    .team__info_rank {
-      font-family: "Roboto", sans-serif;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 20px;
-      line-height: 23px;
-      letter-spacing: 0.05em;
-
-      color: white;
-    }
-
-    .team__info_discription {
-      max-height: 275px;
-      max-width: 256px;
-
-      font-family: "Roboto", sans-serif;
-      font-style: normal;
-      font-weight: 400;
-      font-size: 17px;
-      line-height: 130%;
-
-      letter-spacing: 0.05em;
-
-      color: white;
-    }
   }
 }
 
@@ -229,14 +235,40 @@
   .team {
     margin-left: 2.5%;
   }
-  .slide__right {
-    display: none;
-  }
 
   .swiper-wrapper {
     gap: 0px;
   }
   .swiper-btns {
+    grid-area: slider;
     gap: 75%;
+  }
+  .swiper__slide {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 65px 410px;
+    grid-template-areas:
+      "fullname slider"
+      "slideleft slideright";
+
+    .fullname {
+      display: block;
+      color: white;
+
+      text-align: center;
+
+      font-family: "Roboto", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 23px;
+      letter-spacing: 0.05em;
+      grid-area: fullname;
+    }
+
+    .slide__right {
+      display: none;
+      grid-area: discription;
+    }
   }
 }

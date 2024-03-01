@@ -1,7 +1,8 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 import "swiper/css";
 import SlideButtons from "./swiper-button";
-import SlideButtonsNext from "./swiper-button-next";
+import "swiper/css/pagination";
 import anime from "animejs";
 import "@/assets/styles/swiper.scss";
 
@@ -31,6 +32,8 @@ export default function MySwiper() {
 
   return (
     <Swiper
+      pagination={true}
+      modules={[Pagination]}
       className="swiper"
       {...props}
       onSlideChangeTransitionStart={() => {

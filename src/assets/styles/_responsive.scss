@@ -195,7 +195,7 @@
   //Team section styles
 
   .participants {
-    height: 100svh;
+    height: 700px;
     max-width: 100%;
   }
 
@@ -203,6 +203,8 @@
     height: 112px;
 
     margin-top: 80px;
+    margin-left: 27px;
+
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -241,6 +243,7 @@
     height: 112px;
 
     margin-top: 70px;
+
     display: flex;
     flex-direction: column;
     gap: 50px;
