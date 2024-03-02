@@ -552,6 +552,72 @@
       height: 220px;
     }
   }
+
+  .footer{
+    background-color: #1c1c1c;
+  }
+
+  .footer__menu {
+    display: none;
+  }
+
+  .footer_container {
+    color: white;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+      "title numbers"
+      "email email";
+    align-items: center;
+    align-content: center;
+    text-align: center;
+  }
+
+  .footer__social {
+    grid-area: email;
+  }
+
+  .footer__title-container {
+    margin: 29px 0;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    .footer__title {
+      width: 135px;
+      font-family: "Wadik";
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .footer__date {
+      font-family: Roboto;
+      font-weight: 400;
+    }
+  }
+
+  .footer__numbers {
+    font-family: Roboto;
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      list-style: none;
+      color: white;
+    }
+  }
+
+  .footer__social {
+    font-family: Roboto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: white;
+  }
 }
 
 @media (max-width: 1400px) {
@@ -585,5 +651,4 @@
 }
 
 @media (min-width: 1000px) {
-  
 }

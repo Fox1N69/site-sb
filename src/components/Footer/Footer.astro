@@ -1,5 +1,5 @@
 ---
-import "@/assets/styles/index.scss";
+import "@styles/index.scss";
 ---
 
 <footer class="footer">
@@ -41,8 +41,8 @@ import "@/assets/styles/index.scss";
   </div>
 </footer>
 
-<style lang="scss" scoped>
-  @media (min-widht: 1500px) {
+<style lang="scss">
+  @media (min-width: 1500px) {
     .footer {
       border: 1px solid #1c1c1c;
       background-color: #1c1c1c;
@@ -103,6 +103,7 @@ import "@/assets/styles/index.scss";
     }
 
     .footer__numbers {
+      font-family: Roboto;
       margin: 35px 0;
       ul {
         display: flex;
