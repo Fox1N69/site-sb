@@ -1,14 +1,17 @@
 import { defineConfig } from "astro/config";
 import netlify from "@astrojs/netlify";
 import react from "@astrojs/react";
-
 import tailwind from "@astrojs/tailwind";
+
+import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
   output: "server",
-  adapter: netlify({
-    edgeMiddleware: true,
+  adapter: node({
+    mode: "standalone"
   }),
-  integrations: [react(), tailwind({ applyBaseStyles: false })],
+  integrations: [react(), tailwind({
+    applyBaseStyles: false
+  })]
 });

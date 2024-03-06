@@ -5,34 +5,6 @@ import "../assets/styles/index.scss";
 import Footer from "../components/Footer/Footer.astro";
 ---
 
-<script is:inline lang="js">
-  document.getElementById("myForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const formData = {
-      Title: document.getElementById("title").value,
-      Description: document.getElementById("description").value,
-      PostBody: document.getElementById("postBody").value,
-    };
-
-    fetch("http://127.0.0.1:4000/posts/set", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "*/*",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Успешно отправлено:", data);
-      })
-      .catch((error) => {
-        console.error("Ошибка:", error);
-      });
-  });
-</script>
-
 <Layout title="NewsLayout">
   <div class="news__header">
     <div class="news__container">
@@ -50,14 +22,11 @@ import Footer from "../components/Footer/Footer.astro";
 
   <section class="news__section">
     <h1>Form</h1>
-    <form method="POST" id="myForm">
-      <label for="title">Заголовок:</label>
-      <input type="text" id="title" name="title" /><br /><br />
-      <label for="description">Описание:</label>
-      <input type="text" id="description" name="description" /><br /><br />
-      <label for="postBody">Тело поста:</label>
-      <input type="text" id="postBody" name="postBody" /><br /><br />
-      <button type="submit">Отправить</button>
+    <form id="myForm" class="myForm">
+      <input type="text" name="Title" /><br />
+      <input type="text" name="Description" /><br />
+      <input type="text" name="PostBody" /><br /><br />
+      <button type="submit">submit</button>
     </form>
   </section>
 
