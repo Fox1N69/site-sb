@@ -1,0 +1,49 @@
+---
+
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <form id="myForm">
+      <input
+        type="text"
+        id="title"
+        name="Title"
+        placeholder="Заголовок новости"
+      />
+      <input
+        type="text"
+        id="description"
+        name="Description"
+        placeholder="Описание"
+      />
+      <textarea id="postBody" name="PostBody" placeholder="Тело поста"
+      ></textarea>
+      <button type="button" onclick="submitForm()">Отправить</button>
+    </form>
+
+    <script lang="ts">
+      function submitForm() {
+        var formData = {
+          Title: document.getElementById("title").value,
+          Description: document.getElementById("description").value,
+          PostBody: document.getElementById("postBody").value,
+        };
+
+        fetch("http://127.0.0.1:4000/posts/set", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        })
+          .then((response) => response.json())
+          .then((data) => console.log(data))
+          .catch((error) => console.error("Ошибка:", error));
+      }
+    </script>
+  </body>
+</html>

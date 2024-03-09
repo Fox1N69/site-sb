@@ -3,6 +3,9 @@ import NavBar from "../components/Header/Navigation_otherPage.astro";
 import Layout from "../layouts/Layout.astro";
 import "../assets/styles/index.scss";
 import Footer from "../components/Footer/Footer.astro";
+
+const response = await fetch("http://127.0.0.1:4000/posts/");
+const data = await response.json();
 ---
 
 <Layout title="NewsLayout">

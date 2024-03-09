@@ -5,6 +5,9 @@ import Footer from "@/components/Footer/Footer.astro";
 import "@/assets/styles/index.scss";
 import "@/assets/styles/_responsive.scss";
 import NavBar from "@/components/Header/Navigation.astro";
+
+const response = await fetch("http://127.0.0.1:4000/posts/");
+const data = await response.json();
 ---
 
 <Layout title="HomePages">
@@ -147,7 +150,11 @@ import NavBar from "@/components/Header/Navigation.astro";
           </div>
           <div class="new-card__content">
             <div class="new-card__title">
-              Lorem ipsum dolor sit amet consectetur
+              {
+                data
+                  .filter((item) => item.id === 1)
+                  .map((filteredItem) => <div>{filteredItem.title}</div>)
+              }
             </div>
             <div class="new-card__description">
               Lorem ipsum dolor sit amet consectetur. Amet pellentesque sed sem
@@ -155,20 +162,45 @@ import NavBar from "@/components/Header/Navigation.astro";
             </div>
           </div>
         </div>
+
         <div class="new__card">
           <div class="news__card-img">
+            <img src="/newcardnohover1.png" alt="" />
             <button class="new__btn">Читать</button>
           </div>
-          <div class="new-card__title"></div>
-          <div class="new-card__description"></div>
+          <div class="new-card__content">
+            <div class="new-card__title">
+              {
+                data
+                  .filter((item) => item.id === 2)
+                  .map((filteredItem) => <div>{filteredItem.title}</div>)
+              }
+            </div>
+            <div class="new-card__description">
+              Lorem ipsum dolor sit amet consectetur. Amet pellentesque sed sem
+              gravida sociis faucibus suspendisse.
+            </div>
+          </div>
         </div>
 
         <div class="new__card">
           <div class="news__card-img">
+            <img src="/newcardnohover1.png" alt="" />
             <button class="new__btn">Читать</button>
           </div>
-          <div class="new-card__title"></div>
-          <div class="new-card__description"></div>
+          <div class="new-card__content">
+            <div class="new-card__title">
+              {
+                data
+                  .filter((item) => item.id === 3)
+                  .map((filteredItem) => <div>{filteredItem.title}</div>)
+              }
+            </div>
+            <div class="new-card__description">
+              Lorem ipsum dolor sit amet consectetur. Amet pellentesque sed sem
+              gravida sociis faucibus suspendisse.
+            </div>
+          </div>
         </div>
       </div>
       <a href="/news">
