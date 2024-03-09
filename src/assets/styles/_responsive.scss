@@ -234,6 +234,7 @@
   }
 
   .news {
+    display: none;
     height: 724px;
   }
 
@@ -272,6 +273,7 @@
   }
 
   .news__banner {
+    display: none;
     height: 463px;
     position: absolute;
     z-index: -1;
@@ -279,7 +281,7 @@
   }
 
   .news__content {
-    display: flex;
+    display: none;
     flex-direction: column;
   }
 
