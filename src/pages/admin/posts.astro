@@ -1,5 +1,38 @@
 ---
+import fetch from "node-fetch";
 
+let title = "";
+let description = "";
+let postBody = "";
+
+async function handleSubmit(e) {
+  e.preventDefault();
+
+  const data = {
+    Title: title,
+    Description: description,
+    PostBody: postBody,
+  };
+
+  try {
+    const response = await fetch("http://localhost:4000/posts/set", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Ошибка HTTP: ${response.status}`);
+    }
+
+    console.log("Данные успешно отправлены на сервер");
+    // Обработка ответа сервера, если нужно
+  } catch (error) {
+    console.error("Произошла ошибка при отправке данных:", error);
+  }
+}
 ---
 
 <html lang="en">
@@ -7,43 +40,22 @@
     <meta charset="UTF-8" />
   </head>
   <body>
-    <form id="myForm">
-      <input
-        type="text"
-        id="title"
-        name="Title"
-        placeholder="Заголовок новости"
-      />
-      <input
-        type="text"
-        id="description"
-        name="Description"
-        placeholder="Описание"
-      />
-      <textarea id="postBody" name="PostBody" placeholder="Тело поста"
-      ></textarea>
-      <button type="button" onclick="submitForm()">Отправить</button>
+    <form on:submit={handleSubmit}>
+      <label>
+        Заголовок:
+        <input type="text" bind:value={title} />
+      </label>
+      <label>
+        Описание:
+        <input type="text" bind:value={description} />
+      </label>
+      <label>
+        Тело поста:
+        <textarea bind:value={postBody}></textarea>
+      </label>
+      <button type="submit">Отправить</button>
     </form>
-
-    <script lang="ts">
-      function submitForm() {
-        var formData = {
-          Title: document.getElementById("title").value,
-          Description: document.getElementById("description").value,
-          PostBody: document.getElementById("postBody").value,
-        };
-
-        fetch("http://127.0.0.1:4000/posts/set", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        })
-          .then((response) => response.json())
-          .then((data) => console.log(data))
-          .catch((error) => console.error("Ошибка:", error));
-      }
-    </script>
   </body>
 </html>
+
+//create function onClikc

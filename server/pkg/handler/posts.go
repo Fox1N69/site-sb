@@ -7,7 +7,6 @@ import (
 	"rest/pkg/models"
 
 	"github.com/labstack/echo/v4"
-	log "github.com/sirupsen/logrus"
 )
 
 func (h *Handler) getAllPosts(c echo.Context) error {
@@ -16,7 +15,7 @@ func (h *Handler) getAllPosts(c echo.Context) error {
 
 	data, err := json.Marshal(posts)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	jsonString := string(data)
@@ -29,7 +28,7 @@ func (h *Handler) setPost(c echo.Context) error {
 	data := new(models.Posts)
 
 	if err := c.Bind(&data); err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	database.DB.Create(&data)
@@ -50,7 +49,7 @@ func (h *Handler) updatePosts(c echo.Context) error {
 	}
 
 	if err := database.DB.Save(&data).Error; err != nil {
-		log.Fatal("Error save to database ", err)
+		return err
 	}
 
 	return c.JSON(200, "Post seccessfully change")
@@ -69,7 +68,7 @@ func (h *Handler) deletePosts(c echo.Context) error {
 	}
 
 	if err := database.DB.Delete(&post, id).Error; err != nil {
-		log.Fatal("Error delete to database ", err)
+		return err
 	}
 
 	return c.String(http.StatusOK, "Post successfully deleted")
