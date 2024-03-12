@@ -2,6 +2,7 @@ import { defineConfig } from "astro/config";
 import netlify from "@astrojs/netlify";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
+import svelte from "@astrojs/svelte";
 
 import node from "@astrojs/node";
 
@@ -9,9 +10,13 @@ import node from "@astrojs/node";
 export default defineConfig({
   output: "server",
   adapter: node({
-    mode: "standalone"
+    mode: "standalone",
   }),
-  integrations: [react(), tailwind({
-    applyBaseStyles: false
-  })]
+  integrations: [
+    svelte(),
+    react(),
+    tailwind({
+      applyBaseStyles: false,
+    }),
+  ],
 });

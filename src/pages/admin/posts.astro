@@ -1,61 +1,23 @@
 ---
-import fetch from "node-fetch";
-
-let title = "";
-let description = "";
-let postBody = "";
-
-async function handleSubmit(e) {
-  e.preventDefault();
-
-  const data = {
-    Title: title,
-    Description: description,
-    PostBody: postBody,
-  };
-
-  try {
-    const response = await fetch("http://localhost:4000/posts/set", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Ошибка HTTP: ${response.status}`);
-    }
-
-    console.log("Данные успешно отправлены на сервер");
-    // Обработка ответа сервера, если нужно
-  } catch (error) {
-    console.error("Произошла ошибка при отправке данных:", error);
-  }
-}
+import "./post.mjs";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-  </head>
-  <body>
-    <form on:submit={handleSubmit}>
-      <label>
-        Заголовок:
-        <input type="text" bind:value={title} />
-      </label>
-      <label>
-        Описание:
-        <input type="text" bind:value={description} />
-      </label>
-      <label>
-        Тело поста:
-        <textarea bind:value={postBody}></textarea>
-      </label>
-      <button type="submit">Отправить</button>
-    </form>
-  </body>
-</html>
+<form on:submit="{handleSubmit}">
+  <meta charset="UTF-8" />
+  <label>
+    Title:
+    <input type="text" bind:value="{formData.Title}" />
+  </label>
 
-//create function onClikc
+  <label>
+    Description:
+    <input type="text" bind:value="{formData.Description}" />
+  </label>
+
+  <label>
+    Post Body:
+    <textarea bind:value="{formData.PostBody}"></textarea>
+  </label>
+
+  <button type="submit">Submit</button>
+</form>

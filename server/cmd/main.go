@@ -19,6 +19,7 @@ func main() {
 		log.Fatal(err)
 	}
 
+
 	log.Infoln("Server start on" + " " + "http://localhost:" + os.Getenv("PORT"))
 	log.Fatal(srv.Run(os.Getenv("PORT"), handlers.InitRouter()))
 	log.Fatal(srv.Shutdown(context.Background()))
