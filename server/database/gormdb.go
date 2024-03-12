@@ -1,7 +1,7 @@
 package database
 
 import (
-	"rest/models"
+	"rest/pkg/models"
 	"time"
 
 	"github.com/joho/godotenv"
@@ -24,7 +24,10 @@ func InitGormDB() *gorm.DB {
 	}
 	log.Println("Database connect...")
 
-	DB.AutoMigrate(&models.Posts{})
+	DB.AutoMigrate(&models.Users{})
+	DB.AutoMigrate(&models.Users{})
+
+	DB.Exec("ALTER SEQUENCE posts_id_seq RESTART WITH 1")
 
 	return DB
 }

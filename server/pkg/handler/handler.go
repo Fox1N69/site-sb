@@ -5,7 +5,6 @@ import (
 )
 
 type Handler struct {
-	
 }
 
 func (h *Handler) InitRouter() *echo.Echo {
@@ -20,14 +19,16 @@ func (h *Handler) InitRouter() *echo.Echo {
 	{
 		auth.POST("/sing-up", h.SingUp)
 		auth.POST("/sing-in", h.SingIn)
+		auth.GET("/users", h.getAllUsers)
+		auth.DELETE("/delete:id", h.deleteUser)
 	}
 
 	post := e.Group("/posts")
 	{
 		post.GET("/", h.getAllPosts)
 		post.POST("/set", h.setPost)
-		post.PUT("/update", h.updatePosts)
-		post.DELETE("/delete", h.deletePosts)
+		post.PUT("/update:id", h.updatePosts)
+		post.DELETE("/delete/:id", h.deletePosts)
 
 	}
 
