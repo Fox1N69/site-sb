@@ -1,23 +1,19 @@
 ---
-import "./post.mjs";
+import Layout from "@/layouts/Layout.astro";
 ---
 
-<form on:submit="{handleSubmit}">
-  <meta charset="UTF-8" />
-  <label>
-    Title:
-    <input type="text" bind:value="{formData.Title}" />
-  </label>
-
-  <label>
-    Description:
-    <input type="text" bind:value="{formData.Description}" />
-  </label>
-
-  <label>
-    Post Body:
-    <textarea bind:value="{formData.PostBody}"></textarea>
-  </label>
-
-  <button type="submit">Submit</button>
-</form>
+<Layout title="postForm">
+  <body>
+    <script>
+      document.querySelector("button")?.addEventListener("click", async () => {
+        await fetch("/api/post.json", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({})
+        });
+      });
+    </script>
+   
+   <button>send post</button>
+  </body>
+</Layout>

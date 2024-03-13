@@ -3,7 +3,7 @@ export const prerender = false;
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async (context) => {
-  const res = await fetch("https://127.0.0.1:4000/posts");
+  const res = await fetch("https://127.0.0.1:4000/posts/");
   const data = await res.json();
   return new Response(JSON.stringify(data));
 };
