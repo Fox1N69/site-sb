@@ -1,19 +1,60 @@
 ---
-import Layout from "@/layouts/Layout.astro";
+
 ---
 
-<Layout title="postForm">
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
   <body>
+    <form id="jsonForm">
+      <input type="text" name="fio" value="" />
+      <input type="text" name="email" value="" />
+      <input type="text" name="email" value="teste@mail.ru" />
+      <input type="text" name="phoneNumber" value="" />
+      <button type="submit">Отправить JSON</button>
+    </form>
+
     <script>
-      document.querySelector("button")?.addEventListener("click", async () => {
-        await fetch("/api/post.json", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({})
+      document
+        .getElementById("jsonForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          let formElement = event.target; // Here, 'event.target' is of type 'EventTarget'. We need to explicitly cast it to the 'HTMLFormElement' type.
+          let formData = new FormData(formElement); // Now, we can use 'formElement' as an HTMLFormElement here.
+          let jsonObject = {};
+          formData.forEach(function (value, key) {
+            jsonObject[key] = value;
+          });
+
+          fetch("http://localhost:4000/test", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(jsonObject),
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error("Network response was not ok");
+              }
+              return response.text();
+            })
+            .then((data) => {
+              console.log(data);
+            })
+            .catch((error) => {
+              console.error(
+                "There has been a problem with your fetch operation:",
+                error
+              );
+            });
         });
-      });
     </script>
-   
-   <button>send post</button>
   </body>
-</Layout>
+</html>
