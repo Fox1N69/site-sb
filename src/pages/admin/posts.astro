@@ -1,60 +1,41 @@
 ---
-
+component: FormSubmit;
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
-  </head>
-  <body>
-    <form id="jsonForm">
-      <input type="text" name="fio" value="" />
-      <input type="text" name="email" value="" />
-      <input type="text" name="email" value="teste@mail.ru" />
-      <input type="text" name="phoneNumber" value="" />
-      <button type="submit">Отправить JSON</button>
-    </form>
+<form
+  on:soubmit={handleSubmit}
+  method="POST"
+  action="http://localhost:4000/test"
+>
+  <input type="text" name="username" />
+  <input type="password" name="password" />
+  <button type="submit">Submit</button>
+</form>
 
-    <script>
-      document
-        .getElementById("jsonForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault();
+<script>
+  export function handleSubmit(event) {
+    event.preventDefault();
+    const formElement = event.target;
+    const formData = new FormData(formElement);
 
-          let formElement = event.target; // Here, 'event.target' is of type 'EventTarget'. We need to explicitly cast it to the 'HTMLFormElement' type.
-          let formData = new FormData(formElement); // Now, we can use 'formElement' as an HTMLFormElement here.
-          let jsonObject = {};
-          formData.forEach(function (value, key) {
-            jsonObject[key] = value;
-          });
-
-          fetch("http://localhost:4000/test", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(jsonObject),
-          })
-            .then((response) => {
-              if (!response.ok) {
-                throw new Error("Network response was not ok");
-              }
-              return response.text();
-            })
-            .then((data) => {
-              console.log(data);
-            })
-            .catch((error) => {
-              console.error(
-                "There has been a problem with your fetch operation:",
-                error
-              );
-            });
-        });
-    </script>
-  </body>
-</html>
+    fetch(formElement.getAttribute("action"), {
+      method: formElement.getAttribute("method"),
+      body: formData,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.text();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error(
+          "There has been a problem with your fetch operation:",
+          error
+        );
+      });
+  }
+</script>

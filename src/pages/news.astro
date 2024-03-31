@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import "../assets/styles/index.scss";
 import Footer from "../components/Footer/Footer.astro";
 
-const response = await fetch("http://127.0.0.1:4000/posts/");
+const response = await fetch("http://127.0.0.1:4000/api/post");
 const data = await response.json();
 ---
 
@@ -24,13 +24,17 @@ const data = await response.json();
   </div>
 
   <section class="news__section">
-    <h1>Form</h1>
-    <form id="myForm" class="myForm">
-      <input type="text" name="Title" /><br />
-      <input type="text" name="Description" /><br />
-      <input type="text" name="PostBody" /><br /><br />
-      <button type="submit">submit</button>
-    </form>
+    <ul class="text-white">
+      {
+        data.map((item) => (
+          <>
+            <li>{item.title}</li>
+            <li>{item.description}</li>
+            <li>{item.postBody}</li>
+          </>
+        ))
+      }
+    </ul>
   </section>
 
   <Footer />
