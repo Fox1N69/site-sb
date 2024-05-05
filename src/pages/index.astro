@@ -15,20 +15,6 @@ import NavBar from "@/components/Header/Navigation.astro";
     <main>
       <div class="container">
         <NavBar />
-        <!-- <header class="header">
-            <nav class="navigation">
-              <ul class="navigation__list">
-                <li><a href="#team">Участиники</a></li>
-                <li><a href="/gallery">Галерея</a></li>
-                <li><a href="/news">Новости</a></li>
-                <li><a href="/museum">Выставка</a></li>
-                <li><a href="/documents">Документы</a></li>
-                <li><a href="/investors">Партнеры</a></li>
-              </ul>
-              <span class="navigation__underline"></span>
-            </nav>
-          </header> -->
-        <!--<h1 class="main__title">сибирский рубежъ</h1> -->
         <div class="main__title">
           <img src="/title.png" alt="" width="1200px" />
         </div>
@@ -239,10 +225,10 @@ import NavBar from "@/components/Header/Navigation.astro";
               формирования экспонаты на послевоенный период уже Советской армии.
             </div>
             <div class="bottom__content">
-              <button class="ex__btn">Запись на посещение</button>
+              <button class="ex__btn">Запись</button>
               <div class="fullex__btn">
-                <button class="fullex__btn-text">Подробнее о музее</button>
-                <div class="fullex__arrow"></div>
+                <a class="fullex__btn-text" href="#exibition">Подробнее</a>
+                <img class="fullex__arrow" src="/arrow-more.png"></img>
               </div>
             </div>
           </div>

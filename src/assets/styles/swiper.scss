@@ -234,7 +234,7 @@
   }
 }
 
-@media (min-width: 345px) and (max-width: 600px) {
+@media (min-width: 345px) and (max-width: 635px) {
   .team {
     margin-left: 2.5%;
   }
@@ -246,6 +246,11 @@
     grid-area: slider;
     gap: 75%;
   }
+
+  .swiper-pagination {
+    grid-area: slider;
+  }
+
   .swiper__slide {
     display: grid;
     grid-template-columns: 1fr;

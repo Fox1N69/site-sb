@@ -391,15 +391,24 @@
     }
   }
 
-  .exhibition {
+
+  //exhibition section for mobile
+  .smoke-ex {
     display: none;
-    height: 100vh;
+  }
+  .smoke-ex-l {
+    display: none;
+  }
+
+  .exhibition {
+    min-height: 532px;
+    padding: 0 10%;
   }
 
   .ex__cardbackground {
-    max-width: 1214px;
+    max-width: 315px;
 
-    height: 604px;
+    min-height: 532px;
 
     background: linear-gradient(
       107deg,
@@ -411,30 +420,32 @@
   }
 
   .exhibition__card {
-    width: 1214px;
-
+    max-width: 315px;
+    min-height: 532px;
     margin-top: 220px;
 
-    height: 604px;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
     border-radius: 5px;
     border: 1px solid rgba(255, 255, 255, 0.4);
   }
 
   .exhibition__title {
-    width: 486px;
-    height: 112px;
+    width: 255px;
+    height: 66px;
 
     display: flex;
     flex-direction: column;
 
-    margin: 60px 0 0 96px;
+    margin: 25px 30px;
 
     .ex-title__textOne {
       color: #d8c3ad;
 
       font-family: Wadik;
-      font-size: 50px;
+      font-size: 30px;
       font-style: normal;
       font-weight: 700;
     }
@@ -444,67 +455,65 @@
       -webkit-text-stroke: 1px #d8c3ad;
 
       font-family: Wadik;
-      font-size: 50px;
+      font-size: 30px;
       font-style: normal;
       font-weight: 700;
     }
   }
 
   .exhibition__content {
-    display: flex;
-    flex-direction: row;
-    gap: 30px;
     .ex-content__left {
-      margin-left: 96px;
-      margin-top: 15px;
+      float: left; // Плавающее изображение справа
+      shape-outside: circle(50%); // Округлая форма обведения
+
+      
+
+      img {
+        width: 180px;
+        height: 180px;
+      }
     }
   }
 
-  .ex-content__right {
-    display: flex;
-    flex-direction: column;
-    gap: 60px;
+  .ex__text {
+    text-align: right;
+    margin: 0 21px;
 
-    width: 556px;
-
-    margin-top: 60px;
-
-    .ex__text {
-      color: #fff8f0;
-      font-family: Roboto;
-      font-size: 17px;
-      font-weight: 300;
-      line-height: 130%;
-      letter-spacing: 5%;
-      text-align: left;
-    }
+    color: rgb(255, 248, 240);
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 19px;
+    letter-spacing: 5%;
+    text-align: left;
   }
 
   .bottom__content {
+    margin-top: 23px;
+    margin-left: 21px;
+    margin-bottom: 32px;
     display: flex;
-    flex-direction: row;
-    gap: 78px;
+
     .ex__btn {
-      width: 242px;
-      height: 60px;
-      background: #d8c3ad;
+      width: 120px;
+      height: 48px;
+
       border: 1px solid #d8c3ad;
       border-radius: 5px;
+      background-color: #d8c3ad;
 
-      color: #1f1f1f;
-      font-family: Roboto;
-      font-size: 14px;
-      font-weight: 500;
-      letter-spacing: 1.5px;
     }
 
-    .fullex__btn-text {
-      border: none;
-      background: none;
-
-      color: white;
+    .fullex__btn {
+      margin-left: 23px;
+      display: block;
+      .fullex_btn-text {
+        color: #d8c3ad;
+        font-family: "Roboto";
+      }
     }
   }
+
 
   .gallery {
     height: 380px;
