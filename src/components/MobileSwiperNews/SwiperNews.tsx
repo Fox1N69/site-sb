@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import anime from "animejs";
 import "@/assets/styles/swiper.scss";
 
-export default function MySwiper() {
+export default function NewsSwiper() {
   const props = {
     loop: true,
     effect: "fade",
@@ -55,22 +55,14 @@ export default function MySwiper() {
     >
       {/*Slide 1*/}
       <SwiperSlide className="swiper__slide">
-        <div className="fullname">Максимович Вячеслав</div>
-        <div className="slide__left">
-          <img src="/Vacheclav.png" alt="" />
-        </div>
-        <div className="slide__right">
-          <div className="team__info">
-            <div className="team__info_rank">Должность</div>
-            <div className="team__info_discription">
-              Lorem ipsum dolor sit amet consectetur. Morbi sit ut id feugiat
-              nisl amet aliquet nibh at. Quam fringilla orci pellentesque orci.
-              Arcu in nisi neque nunc. A auctor elit orci sem risus pellentesque
-              facilisi ullamcorper pharetra. Eu ante amet massa vitae quis.
-              Scelerisque faucibus ipsum nibh augue.
-            </div>
+        <div className="news__card">
+          <img src="" alt="" />
+          <div className="card__content">
+            <h3 className="card__title"></h3>
+            <p className="card__text"></p>
           </div>
         </div>
+        <SlideButtons />
       </SwiperSlide>
 
       {/*Slide 2*/}
