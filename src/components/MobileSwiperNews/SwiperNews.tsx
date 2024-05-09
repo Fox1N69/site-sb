@@ -4,7 +4,7 @@ import "swiper/css";
 import SlideButtons from "./swiper-button";
 import "swiper/css/pagination";
 import anime from "animejs";
-import "@/assets/styles/swiper.scss";
+import "@/assets/styles/news_swiper.scss";
 
 export default function NewsSwiper() {
   const props = {
@@ -56,77 +56,21 @@ export default function NewsSwiper() {
       {/*Slide 1*/}
       <SwiperSlide className="swiper__slide">
         <div className="news__card">
-          <img src="" alt="" />
+          <img src="/newcardnohover1.png" alt="" />
           <div className="card__content">
             <h3 className="card__title"></h3>
             <p className="card__text"></p>
           </div>
         </div>
-        <SlideButtons />
       </SwiperSlide>
 
       {/*Slide 2*/}
 
-      <SwiperSlide className="swiper__slide">
-        <div className="fullname">Пинигин Станислав</div>
-        <div className="slide__left">
-          <img src="" alt="" />
-        </div>
-        <div className="slide__right">
-          <div className="team__info">
-            <div className="team__info_rank">Должность</div>
-            <div className="team__info_discription">
-              Lorem ipsum dolor sit amet consectetur. Morbi sit ut id feugiat
-              nisl amet aliquet nibh at. Quam fringilla orci pellentesque orci.
-              Arcu in nisi neque nunc. A auctor elit orci sem risus pellentesque
-              facilisi ullamcorper pharetra. Eu ante amet massa vitae quis.
-              Scelerisque faucibus ipsum nibh augue.
-            </div>
-          </div>
-        </div>
-      </SwiperSlide>
+      <SwiperSlide className="swiper__slide"></SwiperSlide>
 
       {/*Slide 3*/}
 
-      <SwiperSlide className="swiper__slide">
-        <div className="fullname">Максимович Павел</div>
-        <div className="slide__left">
-          <img src="" alt="" />
-        </div>
-        <div className="slide__right">
-          <div className="team__info">
-            <div className="team__info_rank">Должность</div>
-            <div className="team__info_discription">
-              Lorem ipsum dolor sit amet consectetur. Morbi sit ut id feugiat
-              nisl amet aliquet nibh at. Quam fringilla orci pellentesque orci.
-              Arcu in nisi neque nunc. A auctor elit orci sem risus pellentesque
-              facilisi ullamcorper pharetra. Eu ante amet massa vitae quis.
-              Scelerisque faucibus ipsum nibh augue.
-            </div>
-          </div>
-        </div>
-      </SwiperSlide>
-
-      {/*Slide 4*/}
-
-      <SwiperSlide className="swiper__slide">
-        <div className="slide__left">
-          <img src="/video.png" alt="" />
-        </div>
-        <div className="slide__right">
-          <div className="team__info">
-            <div className="team__info_rank">Должность</div>
-            <div className="team__info_discription">
-              Lorem ipsum dolor sit amet consectetur. Morbi sit ut id feugiat
-              nisl amet aliquet nibh at. Quam fringilla orci pellentesque orci.
-              Arcu in nisi neque nunc. A auctor elit orci sem risus pellentesque
-              facilisi ullamcorper pharetra. Eu ante amet massa vitae quis.
-              Scelerisque faucibus ipsum nibh augue.
-            </div>
-          </div>
-        </div>
-      </SwiperSlide>
-      <SlideButtons />
+      <SwiperSlide className="swiper__slide"></SwiperSlide>
     </Swiper>
   );
 }

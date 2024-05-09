@@ -5,6 +5,7 @@ import Footer from "@/components/Footer/Footer.astro";
 import "@/assets/styles/index.scss";
 import "@/assets/styles/_responsive.scss";
 import NavBar from "@/components/Header/Navigation.astro";
+import Mnews from "@/components/MobileSection/Mnews.astro";
 
 //const response = await fetch("http://127.0.0.1:4000/posts/");
 //const data = await response.json();
@@ -201,6 +202,8 @@ import NavBar from "@/components/Header/Navigation.astro";
   </div>
 </section>
 
+<Mnews />
+
 <section class="exhibition">
   <img src="/smoke-ex-l.png" alt="" class="smoke-ex" />
   <img src="/smoke-ex.png" alt="" class="smoke-ex-l" />
@@ -228,7 +231,7 @@ import NavBar from "@/components/Header/Navigation.astro";
               <button class="ex__btn">Запись</button>
               <div class="fullex__btn">
                 <a class="fullex__btn-text" href="#exibition">Подробнее</a>
-                <img class="fullex__arrow" src="/arrow-more.png"></img>
+                <img class="fullex__arrow" src="/arrow-more.png" />
               </div>
             </div>
           </div>
