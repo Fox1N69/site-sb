@@ -55,13 +55,18 @@ func (c *server) handlers() {
 
 func (c *server) v1() {
 	authHandler := v1.NewAuthHandler(c.service.AuthService(), c.infra)
+	postHandler := v1.NewPostHandler(c.service.PostService())
 
 	c.gin.Use(sessions.Sessions("user", c.store))
 
 	admin := c.gin.Group("/admin")
 	{
 		admin.Use(c.middleware.Role("admin"))
-		
+
+		post := admin.Group("/post")
+		{
+			post.POST("/create", postHandler.Create)
+		}
 	}
 
 	v1 := c.gin.Group("v1/account")

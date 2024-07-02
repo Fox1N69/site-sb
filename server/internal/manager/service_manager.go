@@ -9,6 +9,7 @@ import (
 
 type ServiceManager interface {
 	AuthService() service.AuthService
+	PostService() service.PostService
 }
 
 type serviceManager struct {
