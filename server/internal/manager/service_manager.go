@@ -36,3 +36,17 @@ func (sm *serviceManager) AuthService() service.AuthService {
 
 	return authService
 }
+
+var (
+	postServiceOnce sync.Once
+	postService     service.PostService
+)
+
+func (sm *serviceManager) PostService() service.PostService {
+	postServiceOnce.Do(func() {
+		postRepo = sm.repo.PostRepo()
+		postService = service.NewPostService(postRepo)
+	})
+
+	return postService
+}

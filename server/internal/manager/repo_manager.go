@@ -9,6 +9,7 @@ import (
 
 type RepoManager interface {
 	AuthRepo() repo.AuthRepo
+	PostRepo() repo.PostRepo
 }
 
 type repoManager struct {
@@ -30,4 +31,17 @@ func (rm *repoManager) AuthRepo() repo.AuthRepo {
 	})
 
 	return authRepo
+}
+
+var (
+	postRepoOnce sync.Once
+	postRepo     repo.PostRepo
+)
+
+func (rm *repoManager) PostRepo() repo.PostRepo {
+	postRepoOnce.Do(func() {
+		postRepo = repo.NewPostRepo(rm.infra.GormDB())
+	})
+
+	return postRepo
 }
