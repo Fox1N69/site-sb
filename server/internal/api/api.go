@@ -66,6 +66,9 @@ func (c *server) v1() {
 		post := admin.Group("/post")
 		{
 			post.POST("/create", postHandler.Create)
+			post.GET("/", postHandler.GetAll)
+			post.PATCH("/", postHandler.Update)
+			post.DELETE("/", postHandler.Delete)
 		}
 	}
 
