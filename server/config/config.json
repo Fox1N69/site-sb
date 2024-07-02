@@ -1,0 +1,23 @@
+{
+	"environment": {
+		"mode": "dev"
+	},
+	"server": {
+		"port": 4000
+	},
+	"database": {
+		"host": "localhost",
+		"port": "5432",
+		"user": "postgres",
+		"pass": "8008",
+		"name": "remzona"
+	},
+	"secret": {
+		"key": "sercret"
+	},
+	"redis": {
+		"addr": "localhost:6379",
+		"password": "",
+		"db": 0
+	}
+}

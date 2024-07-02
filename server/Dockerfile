@@ -1,64 +1,27 @@
-# syntax=docker/dockerfile:1
+# This docker file not include for postgre database that use in this project
 
+FROM golang:alpine
 
-ARG GO_VERSION=1.22.0
-FROM --platform=$BUILDPLATFORM golang:${GO_VERSION} AS build
-WORKDIR /src
+RUN apk update && apk add --no-cache gcc libc-dev
 
+WORKDIR /work
 
+COPY go.mod go.sum ./
 
-RUN --mount=type=cache,target=/go/pkg/mod/ \
-    --mount=type=bind,source=go.sum,target=go.sum \
-    --mount=type=bind,source=go.mod,target=go.mod \
-    go mod download -x
+RUN go mod tidy
 
+ADD . .
 
+RUN go test -short ./...
 
+RUN go build -o /bin/shop-server app/main.go
 
-ARG TARGETARCH
+WORKDIR /
 
+RUN rm -r /work
 
+COPY config/config.json /config/config.json
 
+EXPOSE 3000
 
-RUN --mount=type=cache,target=/go/pkg/mod/ \
-    --mount=type=bind,target=. \
-    CGO_ENABLED=0 GOARCH=$TARGETARCH go build -o /bin/server ./cmd
-
-
-
-
-
-FROM alpine:latest AS final
-
-
-
-
-RUN --mount=type=cache,target=/var/cache/apk \
-    apk --update add \
-        ca-certificates \
-        tzdata \
-        && \
-        update-ca-certificates
-
-
-
-
-ARG UID=10001
-RUN adduser \
-    --disabled-password \
-    --gecos "" \
-    --home "/nonexistent" \
-    --shell "/sbin/nologin" \
-    --no-create-home \
-    --uid "${UID}" \
-    appuser
-USER appuser
-
-# Copy the executable from the "build" stage.
-COPY --from=build /bin/server /bin/
-
-# Expose the port that the application listens on.
-EXPOSE 4000
-
-# What the container should run when it is started.
-ENTRYPOINT [ "/bin/server" ]
+CMD /bin/shop-server
