@@ -58,6 +58,12 @@ func (c *server) v1() {
 
 	c.gin.Use(sessions.Sessions("user", c.store))
 
+	admin := c.gin.Group("/admin")
+	{
+		admin.Use(c.middleware.Role("admin"))
+		
+	}
+
 	v1 := c.gin.Group("v1/account")
 	{
 		auth := v1.Group("/auth")

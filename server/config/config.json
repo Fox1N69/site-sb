@@ -10,7 +10,7 @@
 		"port": "5432",
 		"user": "postgres",
 		"pass": "8008",
-		"name": "remzona"
+		"name": "sitesb"
 	},
 	"secret": {
 		"key": "sercret"
