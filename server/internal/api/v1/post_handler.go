@@ -26,7 +26,7 @@ func NewPostHandler(postService service.PostService) PostHandler {
 
 func (h *postHandler) Create(c *gin.Context) {
 	var post models.Post
-	if err := c.ShouldBind(post); err != nil {
+	if err := c.ShouldBind(&post); err != nil {
 		response.New(c).Error(400, err)
 		return
 	}

@@ -11,5 +11,6 @@ func main() {
 	i.Migrate(
 		&models.User{},
 		&models.Login{},
+		&models.Post{},
 	)
 }
