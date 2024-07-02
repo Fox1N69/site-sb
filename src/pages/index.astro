@@ -7,8 +7,15 @@ import "@/assets/styles/_responsive.scss";
 import NavBar from "@/components/Header/Navigation.astro";
 import Mnews from "@/components/MobileSection/Mnews.astro";
 
-//const response = await fetch("http://127.0.0.1:4000/posts/");
-//const data = await response.json();
+type Post = {
+  id: number;
+  title: string;
+  description: string;
+  text: string;
+};
+
+const res = await fetch("http://localhost:4000/post/");
+const data: Post[] = await res.json();
 ---
 
 <Layout title="HomePages">
