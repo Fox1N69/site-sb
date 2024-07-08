@@ -36,6 +36,7 @@ func NewServer(infra infra.Infra, redisClient *redis.Client) Server {
 		store:       store,
 		redisClient: redisClient,
 	}
+
 }
 
 func (c *server) Run() {
@@ -74,6 +75,7 @@ func (c *server) v1() {
 	post := c.gin.Group("/post")
 	{
 		post.GET("/", postHandler.GetAll)
+		post.GET("/:id", postHandler.GetPostByID)
 	}
 
 	v1 := c.gin.Group("v1/account")

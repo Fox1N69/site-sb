@@ -14,6 +14,7 @@ type PostHandler interface {
 	GetAll(c *gin.Context)
 	Update(c *gin.Context)
 	Delete(c *gin.Context)
+	GetPostByID(c *gin.Context)
 }
 
 type postHandler struct {
@@ -80,4 +81,20 @@ func (h *postHandler) Delete(c *gin.Context) {
 	}
 
 	c.JSON(200, "post delete success")
+}
+
+func (h *postHandler) GetPostByID(c *gin.Context) {
+	postID, err := strconv.ParseUint(c.Param("id"), 10, 64)
+	if err != nil {
+		response.New(c).Error(400, err)
+		return
+	}
+
+	post, err := h.service.GetPostByID(uint(postID))
+	if err != nil {
+		response.New(c).Error(501, err)
+		return
+	}
+
+	c.JSON(200, post)
 }

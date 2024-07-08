@@ -3,9 +3,17 @@ import NavBar from "../components/Header/Navigation_otherPage.astro";
 import Layout from "../layouts/Layout.astro";
 import "../assets/styles/index.scss";
 import Footer from "../components/Footer/Footer.astro";
+import { NewsTSX } from "../components/News/index.tsx";
 
-const response = await fetch("http://127.0.0.1:4000/api/post");
-const data = await response.json();
+interface Post {
+  id: number;
+  title: string;
+  description: string;
+  text: string;
+}
+
+const response = await fetch("http://127.0.0.1:4000/post/");
+const data: Post[] = await response.json();
 ---
 
 <Layout title="NewsLayout">
@@ -24,27 +32,34 @@ const data = await response.json();
   </div>
 
   <section class="news__section">
-    <ul class="text-white">
+    <div class="news">
       {
         data.map((item) => (
-          <>
+          <ul>
             <li>{item.title}</li>
             <li>{item.description}</li>
-            <li>{item.postBody}</li>
-          </>
+            <li>{item.text}</li>
+          </ul>
         ))
       }
-    </ul>
+    </div>
   </section>
-
   <Footer />
 </Layout>
-
-<section class="news__page"></section>
 
 <style lang="scss" scoped>
   .news__container {
     padding: 0 calc(50% - 749px);
+  }
+
+  .news__section {
+    color: white;
+
+    .news {
+      height: max-content;
+      display: flex;
+      gap: 30px;
+    }
   }
 
   .news__header {

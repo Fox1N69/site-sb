@@ -8,6 +8,7 @@ import (
 type PostService interface {
 	CreatePost(post *models.Post) error
 	GetPosts() ([]models.Post, error)
+	GetPostByID(postID uint) (*models.Post, error)
 	UpdatePost(postID uint) error
 	DeletePost(postID uint) error
 }
@@ -34,4 +35,8 @@ func (s *postService) UpdatePost(postID uint) error {
 
 func (s *postService) DeletePost(postID uint) error {
 	return s.repo.Delete(postID)
+}
+
+func (s *postService) GetPostByID(postID uint) (*models.Post, error) {
+	return s.repo.PostByID(postID)
 }

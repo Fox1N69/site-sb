@@ -9,6 +9,7 @@ import (
 type PostRepo interface {
 	Create(post *models.Post) error
 	GetPosts() ([]models.Post, error)
+	PostByID(postID uint) (*models.Post, error)
 	Update(postID uint) error
 	Delete(postID uint) error
 }
@@ -47,4 +48,12 @@ func (r *postRepo) Delete(postID uint) error {
 		return err
 	}
 	return nil
+}
+
+func (r *postRepo) PostByID(postID uint) (*models.Post, error) {
+	var post models.Post
+	if err := r.db.Where("id = ?", postID).First(&post).Error; err != nil {
+		return nil, err
+	}
+	return &post, nil
 }
