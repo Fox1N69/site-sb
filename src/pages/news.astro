@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import "../assets/styles/index.scss";
 import Footer from "../components/Footer/Footer.astro";
 import { NewsTSX } from "../components/News/index.tsx";
+import axios from "axios";
 
 interface Post {
   id: number;
@@ -12,8 +13,8 @@ interface Post {
   text: string;
 }
 
-const response = await fetch("http://127.0.0.1:4000/post/");
-const data: Post[] = await response.json();
+const response = await axios.get<Post[]>("http://127.0.0.1:4000/post/");
+const data: Post[] = await response.data;
 ---
 
 <Layout title="NewsLayout">

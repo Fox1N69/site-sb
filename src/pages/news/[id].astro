@@ -14,10 +14,36 @@ const resp = await fetch(`http://localhost:4000/post/${id}`);
 const post: Post = await resp.json();
 ---
 
-<Layout title="news by id">
-  <main class="news__main">
-    <div>{post.title}</div>
-    <p>{post.description}</p>
-    <p>{post.text}</p>
+<Layout title="new by id">
+  <main class="new__main">
+    <div class="container">
+      <h1 class="new__title">{post.title}</h1>
+      <p class="new__description">{post.description}</p>
+      <p class="new__text">{post.text}</p>
+    </div>
   </main>
 </Layout>
+
+<style lang="scss" scoped>
+  .new__main {
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container {
+    width: max-content;
+    padding: 10px 30px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+  }
+</style>

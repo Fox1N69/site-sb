@@ -7,6 +7,7 @@ import "@/assets/styles/_responsive.scss";
 import NavBar from "@/components/Header/Navigation.astro";
 import Mnews from "@/components/MobileSection/Mnews.astro";
 import NewsCard from "@components/News/NewsCard.astro";
+import axios from "axios";
 
 interface Post {
   id: number;
@@ -15,8 +16,8 @@ interface Post {
   text: string;
 }
 
-const resp = await fetch("http://localhost:4000/post/");
-const data: Post[] = await resp.json();
+const resp = await axios.get<Post[]>("http://localhost:4000/post/");
+const data: Post[] = await resp.data;
 ---
 
 <Layout title="HomePages">
@@ -142,7 +143,11 @@ const data: Post[] = await resp.json();
           data
             .slice(0, 3)
             .map((item) => (
-              <NewsCard title={item.title} description={item.description} />
+              <NewsCard
+                id={item.id}
+                title={item.title}
+                description={item.description}
+              />
             ))
         }
       </div>
