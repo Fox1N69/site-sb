@@ -1,0 +1,56 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<script>
+    async function authenticate() {
+        const username = prompt("Введите логин:");
+        const password = prompt("Введите пароль:");
+
+        if (username && password) {
+            // Отправляем запрос на сервер
+            const response = await fetch(
+                "http://localhost:4000/v1/account/auth/login",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        username: username,
+                        password: password,
+                    }),
+                },
+            );
+
+            if (response.ok) {
+                const data = await response.json();
+
+                // Сохраняем JWT токен в LocalStorage
+                localStorage.setItem("token", data.token);
+
+                // Добавить дополнительную логику, если требуется
+                alert(`Добро пожаловать, ${data.user.fio}!`);
+                window.location.href = "/admin"; // Перенаправление на защищённую страницу
+            } else {
+                alert("Неверный логин или пароль.");
+            }
+        } else {
+            alert("Логин и пароль не могут быть пустыми.");
+        }
+    }
+
+    // Вызываем функцию при загрузке страницы
+    window.onload = authenticate;
+</script>
+
+<Layout title="admin">
+    <h1>Аутентификация</h1>
+    <p>Пожалуйста, подождите...</p>
+</Layout>
+
+<style lang="scss" scoped>
+    h1 {
+        text-align: center;
+    }
+</style>

@@ -1,19 +1,23 @@
 ---
 interface Props {
   id?: number;
+  preview_image: string;
+  full_image?: string;
   title: string;
   description: string;
   text?: string;
 }
 
-const { id, title, description, text } = Astro.props;
+const { id, preview_image ,title, description} = Astro.props;
 ---
 
 <div class="new__card">
   <div class="news__card-img">
-    <img src="/newcardnohover1.png" alt="" />
-    <a href={`/news/${id}`} class="a__write new__btn">Читать </a>
+    <img src={preview_image} alt="" class="news__img" />
+    <div class="overlay"></div> <!-- Псевдоэлемент для затемнения -->
+    <a href={`/news/${id}`} class="a__write new__btn">Читать</a>
   </div>
+
   <div class="new-card__content">
     <div class="new-card__title">{title}</div>
     <div class="new-card__description">{description}</div>
@@ -23,5 +27,81 @@ const { id, title, description, text } = Astro.props;
 <style lang="scss" scoped>
   .a__write {
     color: black;
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Увеличено время и добавлено увеличение */
+    opacity: 0; /* Изначально кнопка скрыта */
+    transform: scale(0.9); /* Уменьшает кнопку */
+  }
+
+  .new__card {
+      border: 1px;
+      border-radius: 6px;
+  }
+
+  .news__card-img {
+      //background: url("/newcardnohover1.png") no-repeat center;
+    background-size: cover;
+    height: 210px;
+    width: 370px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* Позиционирование для абсолютных элементов */
+    overflow: hidden; /* Скрывает переполнение */
+  }
+
+  .news__img {
+    width: 370px; /* Ширина изображения */
+    height: 210px; /* Высота изображения */
+    object-fit: cover; /* Покрывающие пропорции */
+    position: absolute; /* Позиционирование под кнопкой */
+    top: 0;
+    left: 0;
+    transition: filter 0.3s ease; /* Плавный переход для затемнения */
+      border: 1px;
+      border-radius: 6px 6px 0 0 ;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0); /* Начальная прозрачность */
+    transition: background 0.3s ease; /* Плавный переход для фона */
+  }
+
+  .new__btn {
+    display: flex; /* Показываем кнопку при наведении */
+    width: 90px;
+    height: 34px;
+    border: 1px;
+    border-radius: 1px;
+    background: #d8c3ad;
+    color: #282828;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 11px;
+  }
+
+  .news__card-img:hover {
+    .a__write {
+      opacity: 1; /* Появление кнопки при наведении */
+      transform: scale(1); /* Возвращает кнопку к нормальному размеру */
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.5); /* Затемнение при наведении */
+    }
+
+    .news__img {
+      filter: brightness(0.7); /* Затемнение изображения при наведении */
+    }
+  }
+
+  .news__card-img:hover .a__write {
+    transition: opacity 0.6s ease, transform 0.6s ease; /* Увеличение эффекта плавности */
+    transform: scale(1.05); /* Анимация увеличения кнопки при наведении */
   }
 </style>
+

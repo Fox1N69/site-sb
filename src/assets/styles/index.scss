@@ -46,8 +46,7 @@ body {
     width: 95.5%;
   }*/
 
-  .main__title {
-  }
+  .main__title {}
 
   /*.main__title {
   text-align: center;
@@ -126,6 +125,7 @@ body {
     width: 324px;
     height: 614px;
   }
+
   .center__content-mb {
     display: none;
   }
@@ -148,7 +148,8 @@ body {
     font-size: 17px;
     font-style: normal;
     font-weight: 400;
-    line-height: 135%; /* 22.95px */
+    line-height: 135%;
+    /* 22.95px */
     letter-spacing: 1.36px !important;
   }
 
@@ -307,6 +308,7 @@ body {
       line-height: 0%;
       letter-spacing: 2.5px;
     }
+
     .news__titleTwo {
       color: #d8c3ad;
 
@@ -352,6 +354,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+
     img {
       position: absolute;
       z-index: 0;
@@ -441,8 +444,7 @@ body {
     height: 100vh;
   }
 
-  .smoke-ex-content {
-  }
+  .smoke-ex-content {}
 
   .smoke-ex {
     position: absolute;
@@ -462,11 +464,9 @@ body {
 
     height: 604px;
 
-    background: linear-gradient(
-      107deg,
-      rgba(255, 255, 255, 0.04) 2.07%,
-      rgba(255, 255, 255, 0.01) 55.58%
-    );
+    background: linear-gradient(107deg,
+        rgba(255, 255, 255, 0.04) 2.07%,
+        rgba(255, 255, 255, 0.01) 55.58%);
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(25px);
   }
@@ -515,6 +515,7 @@ body {
     display: flex;
     flex-direction: row;
     gap: 30px;
+
     .ex-content__left {
       margin-left: 96px;
       margin-top: 15px;
@@ -545,6 +546,7 @@ body {
     display: flex;
     flex-direction: row;
     gap: 78px;
+
     .ex__btn {
       width: 242px;
       height: 60px;
@@ -614,6 +616,7 @@ body {
     display: flex;
     flex-direction: row;
     gap: 60px;
+
     .invest__card {
       background-color: #333333;
 

@@ -3,18 +3,20 @@ import NavBar from "../components/Header/Navigation_otherPage.astro";
 import Layout from "../layouts/Layout.astro";
 import "../assets/styles/index.scss";
 import Footer from "../components/Footer/Footer.astro";
-import { NewsTSX } from "../components/News/index.tsx";
 import axios from "axios";
+import NewsCard from "@/components/News/NewsCard.astro";
 
 interface Post {
   id: number;
+  preview_image: string;
+  full_image: string;
   title: string;
   description: string;
   text: string;
 }
 
 const response = await axios.get<Post[]>("http://127.0.0.1:4000/post/");
-const data: Post[] = await response.data;
+const data: Post[] = response.data;
 ---
 
 <Layout title="NewsLayout">
@@ -36,10 +38,8 @@ const data: Post[] = await response.data;
     <div class="news">
       {
         data.map((item) => (
-          <ul>
-            <li>{item.title}</li>
-            <li>{item.description}</li>
-            <li>{item.text}</li>
+          <ul class="news__card">
+                <NewsCard id={item.id} preview_image={item.preview_image} title={item.title} description={item.description} text={item.text}/>
           </ul>
         ))
       }
@@ -55,11 +55,26 @@ const data: Post[] = await response.data;
 
   .news__section {
     color: white;
+    padding: 5px 20px;
 
     .news {
+      padding: 30px 30px;
       height: max-content;
-      display: flex;
-      gap: 30px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      justify-items: center;
+      gap: 50px;
+          // .news__card {
+          //     height: 100%;
+          //     width: 100%;
+          //     padding: 10px;
+          //     border: 1px solid white;
+          //     border-radius: 7px;
+          //     display: flex;
+          //     flex-direction: column;
+          //     gap: 10px;
+          //     color: white;
+          // }
     }
   }
 

@@ -10,221 +10,249 @@ import NewsCard from "@components/News/NewsCard.astro";
 import axios from "axios";
 
 interface Post {
-  id: number;
-  title: string;
-  description: string;
-  text: string;
+    id: number;
+    created_at: number;
+    preview_image: string;
+    title: string;
+    description: string;
+    text: string;
 }
 
 const resp = await axios.get<Post[]>("http://localhost:4000/post/");
-const data: Post[] = await resp.data;
+const data: Post[] = resp.data;
 ---
 
 <Layout title="HomePages">
-  <section class="main">
-    <main>
-      <div class="container">
-        <NavBar />
-        <div class="main__title">
-          <img src="/title.png" alt="" width="1200px" />
+    <section class="main">
+        <main>
+            <div class="container">
+                <NavBar />
+                <div class="main__title">
+                    <img src="/title.png" alt="" width="1200px" />
+                </div>
+                <div class="main__title-mobile">
+                    <img src="/h1-mobile.png" alt="" width="341.38px" />
+                </div>
+                <img
+                    id="smoke"
+                    class="smoke1"
+                    src="/smoke1.png"
+                    style="z-index: 2"
+                />
+                <img id="smoke" src="/smoke3.png" alt="" class="smoke3" />
+                <img id="smoke" class="smoke2" src="/smoke2.png" alt="" />
+                <div class="content__main">
+                    <div class="left__content">
+                        <div class="left__textOne">
+                            Ситниковское отделение военно историчейского Клуба
+                            "Сибирский рубежъ"
+                        </div>
+                        <div class="left__textTwo">
+                            Военно историчейский Клуб "Сибирский рубежъ"
+                            занимается углубленным изучением истории Войн нашей
+                            страны
+                        </div>
+                    </div>
+                    <div class="center__content">
+                        <img
+                            src="/solider.png"
+                            alt=""
+                            style="position: absolute; z-index: 1;"
+                        />
+                    </div>
+
+                    <div class="center__content-mb">
+                        <img src="/solider-mb.png" alt="" style="z-index: 0;" />
+                    </div>
+
+                    <div class="right__content">
+                        <a
+                            href="https://vk.com/video_ext.php?oid=-80040324&id=456294285&hash=7d30863e53f7a586"
+                            class="vide-link-mb"
+                        >
+                            <img
+                                class="right__content-mb"
+                                src="/video-mb.png"
+                                alt=""
+                            />
+                        </a>
+                        <div class="btn__play">
+                            <a
+                                href="https://vk.com/video_ext.php?oid=-80040324&id=456294285&hash=7d30863e53f7a586"
+                            >
+                                <img
+                                    src="/play_btn.png"
+                                    alt=""
+                                    width="30px"
+                                    height="35px"
+                                />
+                            </a>
+                        </div>
+                        <a
+                            href="https://vk.com/video_ext.php?oid=-80040324&id=456294285&hash=7d30863e53f7a586"
+                        >
+                            <div class="btn-play__title">смотреть видео</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <section class="about">
+        <div class="container">
+            <div class="about-us">
+                <div class="about__activity">
+                    <div class="activity__block">
+                        <img class="activity__icon" src="/casc.png" alt="" />
+                        <div class="activity__description">
+                            Восстановление униформы и амуниции солдат Красной
+                            Армии и солдат Вермахта
+                        </div>
+                    </div>
+
+                    <div class="activity__block">
+                        <img class="activity__icon" src="/airplan.png" alt="" />
+                        <div class="activity__description">
+                            Организация военно-исторической реконструкции
+                        </div>
+                    </div>
+
+                    <div class="activity__block">
+                        <img src="/tank.png" alt="" />
+                        <div class="activity__description">
+                            Участие в выездных военно-патриотических
+                            мероприятиях
+                        </div>
+                    </div>
+
+                    <div class="activity__block">
+                        <img src="/worldmap.png" alt="" />
+                        <div class="activity__description">
+                            Военно-патриотическое воспитание молодежи и
+                            современного общества
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="main__title-mobile">
-          <img src="/h1-mobile.png" alt="" width="341.38px" />
-        </div>
-        <img id="smoke" class="smoke1" src="/smoke1.png" style="z-index: 2" />
-        <img id="smoke" src="/smoke3.png" alt="" class="smoke3" />
-        <img id="smoke" class="smoke2" src="/smoke2.png" alt="" />
-        <div class="content__main">
-          <div class="left__content">
-            <div class="left__textOne">
-              Ситниковское отделение военно историчейского Клуба "Сибирский
-              рубежъ"
-            </div>
-            <div class="left__textTwo">
-              Военно историчейский Клуб "Сибирский рубежъ" занимается
-              углубленным изучением истории Войн нашей страны
-            </div>
-          </div>
-          <div class="center__content">
-            <img
-              src="/solider.png"
-              alt=""
-              style="position: absolute; z-index: 1;"
-            />
-          </div>
-
-          <div class="center__content-mb">
-            <img src="/solider-mb.png" alt="" style="z-index: 0;" />
-          </div>
-
-          <div class="right__content">
-            <a
-              href="https://vk.com/video_ext.php?oid=-80040324&id=456294285&hash=7d30863e53f7a586"
-              class="vide-link-mb"
-            >
-              <img class="right__content-mb" src="/video-mb.png" alt="" />
-            </a>
-            <div class="btn__play">
-              <a
-                href="https://vk.com/video_ext.php?oid=-80040324&id=456294285&hash=7d30863e53f7a586"
-              >
-                <img src="/play_btn.png" alt="" width="30px" height="35px" />
-              </a>
-            </div>
-            <a
-              href="https://vk.com/video_ext.php?oid=-80040324&id=456294285&hash=7d30863e53f7a586"
-            >
-              <div class="btn-play__title">смотреть видео</div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </main>
-  </section>
-
-  <section class="about">
-    <div class="container">
-      <div class="about-us">
-        <div class="about__activity">
-          <div class="activity__block">
-            <img class="activity__icon" src="/casc.png" alt="" />
-            <div class="activity__description">
-              Восстановление униформы и амуниции солдат Красной Армии и солдат
-              Вермахта
-            </div>
-          </div>
-
-          <div class="activity__block">
-            <img class="activity__icon" src="/airplan.png" alt="" />
-            <div class="activity__description">
-              Организация военно-исторической реконструкции
-            </div>
-          </div>
-
-          <div class="activity__block">
-            <img src="/tank.png" alt="" />
-            <div class="activity__description">
-              Участие в выездных военно-патриотических мероприятиях
-            </div>
-          </div>
-
-          <div class="activity__block">
-            <img src="/worldmap.png" alt="" />
-            <div class="activity__description">
-              Военно-патриотическое воспитание молодежи и современного общества
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 </Layout>
 
 <section class="participants" id="team">
-  <div class="participant__title">
-    <div class="partic__titleOne">Наши</div>
-    <div class="partic__titleTwo">Участники</div>
-  </div>
-  <div>
-    <TeamLayout />
-  </div>
+    <div class="participant__title">
+        <div class="partic__titleOne">Наши</div>
+        <div class="partic__titleTwo">Участники</div>
+    </div>
+    <div>
+        <TeamLayout />
+    </div>
 </section>
 
 <section class="news">
-  <img class="news__banner" src="/news_banner.png" alt="" />
-  <div class="container">
-    <div class="news__content">
-      <div class="news__titles">
-        <div class="news__titleOne">Гланые</div>
-        <div class="news__titleTwo">Новости</div>
-      </div>
-      <div class="news__cards">
-        {
-          data
-            .slice(0, 3)
-            .map((item) => (
-              <NewsCard
-                id={item.id}
-                title={item.title}
-                description={item.description}
-              />
-            ))
-        }
-      </div>
-      <a href="/news">
-        <div class="btn__fullnews">
-          <div class="fullnews__title">Читать все новости</div>
-          <span class="fullnews__arrow"
-            ><img src="/arrow-more.png" alt="" /></span
-          >
-        </div>
-      </a>
-    </div>
-  </div>
-
-  <Mnews />
-
-  <section class="exhibition">
-    <img src="/smoke-ex-l.png" alt="" class="smoke-ex" />
-    <img src="/smoke-ex.png" alt="" class="smoke-ex-l" />
+    <img class="news__banner" src="/news_banner.png" alt="" />
     <div class="container">
-      <div class="ex__cardbackground">
-        <div class="exhibition__card">
-          <div class="exhibition__title">
-            <div class="ex-title__textOne">Музейная</div>
-            <div class="ex-title__textTwo">Выставка</div>
-          </div>
-          <div class="exhibition__content">
-            <div class="ex-content__left">
-              <img src="/ex-cask.png" alt="" />
+        <div class="news__content">
+            <div class="news__titles">
+                <div class="news__titleOne">Гланые</div>
+                <div class="news__titleTwo">Новости</div>
             </div>
-            <div class="ex-content__right">
-              <div class="ex__text">
-                На данной выставке представлены экспозиции по таким эпохам как:
-                Первая мировая война, годы гражданской войны и крестьянского
-                восстания на юге Тюменской области, период Советско-финской
-                войны, годы Великой отечественной войны. Имеются несколько
-                манекенов в форме одежды на начало и второй период войны. Так же
-                в начале формирования экспонаты на послевоенный период уже
-                Советской армии.
-              </div>
-              <div class="bottom__content">
-                <button class="ex__btn">Запись</button>
-                <div class="fullex__btn">
-                  <a class="fullex__btn-text" href="#exibition">Подробнее</a>
-                  <img class="fullex__arrow" src="/arrow-more.png" />
+            <div class="news__cards">
+                {
+                    data
+                        .slice(0, 3)
+                        .map((item) => (
+                            <NewsCard
+                                id={item.id}
+                                preview_image={item.preview_image}
+                                title={item.title}
+                                description={item.description}
+                            />
+                        ))
+                }
+            </div>
+            <a href="/news">
+                <div class="btn__fullnews">
+                    <div class="fullnews__title">Читать все новости</div>
+                    <span class="fullnews__arrow"
+                        ><img src="/arrow-more.png" alt="" /></span
+                    >
                 </div>
-              </div>
+            </a>
+        </div>
+    </div>
+
+    <Mnews />
+
+    <section class="exhibition">
+        <img src="/smoke-ex-l.png" alt="" class="smoke-ex" />
+        <img src="/smoke-ex.png" alt="" class="smoke-ex-l" />
+        <div class="container">
+            <div class="ex__cardbackground">
+                <div class="exhibition__card">
+                    <div class="exhibition__title">
+                        <div class="ex-title__textOne">Музейная</div>
+                        <div class="ex-title__textTwo">Выставка</div>
+                    </div>
+                    <div class="exhibition__content">
+                        <div class="ex-content__left">
+                            <img src="/ex-cask.png" alt="" />
+                        </div>
+                        <div class="ex-content__right">
+                            <div class="ex__text">
+                                На данной выставке представлены экспозиции по
+                                таким эпохам как: Первая мировая война, годы
+                                гражданской войны и крестьянского восстания на
+                                юге Тюменской области, период Советско-финской
+                                войны, годы Великой отечественной войны. Имеются
+                                несколько манекенов в форме одежды на начало и
+                                второй период войны. Так же в начале
+                                формирования экспонаты на послевоенный период
+                                уже Советской армии.
+                            </div>
+                            <div class="bottom__content">
+                                <button class="ex__btn">Запись</button>
+                                <div class="fullex__btn">
+                                    <a
+                                        class="fullex__btn-text"
+                                        href="#exibition">Подробнее</a
+                                    >
+                                    <img
+                                        class="fullex__arrow"
+                                        src="/arrow-more.png"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="gallery">
-    <div class="fullgl__btn">Смотреть всю галерею</div>
-    <span class="fullgl__arrow">
-      <img src="/arrow-more.png" />
-    </span>
-  </section>
+    <section class="gallery">
+        <div class="fullgl__btn">Смотреть всю галерею</div>
+        <span class="fullgl__arrow">
+            <img src="/arrow-more.png" />
+        </span>
+    </section>
 
-  <section class="investors">
-    <div class="container">
-      <div class="investors__card-content">
-        <div class="investors__cards">
-          <div class="invest__card"><img src="" alt="" /></div>
-          <div class="invest__card"><img src="" alt="" /></div>
-          <div class="invest__card"><img src="" alt="" /></div>
-          <div class="invest__card"><img src="" alt="" /></div>
-          <div class="invest__card"><img src="" alt="" /></div>
+    <section class="investors">
+        <div class="container">
+            <div class="investors__card-content">
+                <div class="investors__cards">
+                    <div class="invest__card"><img src="" alt="" /></div>
+                    <div class="invest__card"><img src="" alt="" /></div>
+                    <div class="invest__card"><img src="" alt="" /></div>
+                    <div class="invest__card"><img src="" alt="" /></div>
+                    <div class="invest__card"><img src="" alt="" /></div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <Footer />
-  <!-- <section class="footer">
+    <Footer />
+    <!-- <section class="footer">
   <div class="footer_container">
     <div class="footer__title-container">
       <div class="footer__title">Сибирский рубежъ</div>
@@ -261,14 +289,14 @@ const data: Post[] = await resp.data;
   </div>
 </section> -->
 
-  <style lang="scss" scoped>
-    .main {
-      height: 925px;
+    <style lang="scss" scoped>
+        .main {
+            height: 925px;
 
-      display: flex;
-      flex-direction: column;
-      background: url("/backround-image.png");
-      background-repeat: no-repeat;
-    }
-  </style>
+            display: flex;
+            flex-direction: column;
+            background: url("/backround-image.png");
+            background-repeat: no-repeat;
+        }
+    </style>
 </section>

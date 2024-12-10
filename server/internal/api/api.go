@@ -36,7 +36,6 @@ func NewServer(infra infra.Infra, redisClient *redis.Client) Server {
 		store:       store,
 		redisClient: redisClient,
 	}
-
 }
 
 func (c *server) Run() {

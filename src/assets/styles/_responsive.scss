@@ -34,7 +34,7 @@
     display: none !important;
   }
 
-  .navigation__list > li {
+  .navigation__list>li {
     color: white;
   }
 
@@ -103,9 +103,11 @@
   .center__content {
     display: none;
   }
+
   .center__content-mb {
     width: 239px;
     margin-right: 5%;
+
     img {
       position: absolute;
       bottom: 0px;
@@ -130,7 +132,8 @@
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 135%; /* 22.95px */
+    line-height: 135%;
+    /* 22.95px */
     letter-spacing: 1.36px;
   }
 
@@ -139,6 +142,7 @@
     height: 163.72px;
 
     z-index: 2;
+
     a {
       background-image: url("/video-mb.png");
       background-size: cover;
@@ -261,6 +265,7 @@
       line-height: 0%;
       letter-spacing: 2.5px;
     }
+
     .news__titleTwo {
       color: #d8c3ad;
 
@@ -301,40 +306,6 @@
     width: 370px;
     background: #272727;
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.25);
-  }
-
-  .news__card-img {
-    background: url("/newcardnohover1.png"), no-repeat;
-    height: 210px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .new__btn {
-    display: none;
-  }
-
-  .news__card-img:hover {
-    background: url("/newcardnohover1.png"), no-repeat;
-    .new__btn {
-      display: flex;
-
-      width: 90px;
-      height: 34px;
-
-      border: 1px;
-      border-radius: 1px;
-      background: #d8c3ad;
-      color: #282828;
-
-      align-items: center;
-      justify-content: center;
-      padding: 3px 11px;
-
-      cursor: pointer;
-    }
   }
 
   .new-card__content {
@@ -396,6 +367,7 @@
   .smoke-ex {
     display: none;
   }
+
   .smoke-ex-l {
     display: none;
   }
@@ -410,11 +382,9 @@
 
     min-height: 532px;
 
-    background: linear-gradient(
-      107deg,
-      rgba(255, 255, 255, 0.04) 2.07%,
-      rgba(255, 255, 255, 0.01) 55.58%
-    );
+    background: linear-gradient(107deg,
+        rgba(255, 255, 255, 0.04) 2.07%,
+        rgba(255, 255, 255, 0.01) 55.58%);
     box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(25px);
   }
@@ -427,7 +397,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     border-radius: 5px;
     border: 1px solid rgba(255, 255, 255, 0.4);
   }
@@ -466,7 +436,7 @@
       float: left; // Плавающее изображение справа
       shape-outside: circle(50%); // Округлая форма обведения
 
-      
+
 
       img {
         width: 180px;
@@ -507,6 +477,7 @@
     .fullex__btn {
       margin-left: 23px;
       display: block;
+
       .fullex_btn-text {
         color: #d8c3ad;
         font-family: "Roboto";
@@ -560,6 +531,7 @@
     display: flex;
     flex-direction: row;
     gap: 60px;
+
     .invest__card {
       background-color: #333333;
 
@@ -602,6 +574,7 @@
     flex-direction: column;
     align-items: center;
     gap: 25px;
+
     .footer__title {
       width: 135px;
       font-family: "Wadik";
@@ -617,6 +590,7 @@
 
   .footer__numbers {
     font-family: Roboto;
+
     ul {
       display: flex;
       flex-direction: column;
@@ -666,5 +640,4 @@
   }
 }
 
-@media (min-width: 1000px) {
-}
+@media (min-width: 1000px) {}
