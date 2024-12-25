@@ -14,10 +14,5 @@
     },
     "secret": {
         "key": "sercret"
-    },
-    "redis": {
-        "addr": "localhost:6379",
-        "password": "",
-        "db": 0
     }
 }
