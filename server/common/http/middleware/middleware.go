@@ -4,10 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
-	"strings"
-
 	"site-sb/common/http/response"
 	"site-sb/common/util/token"
+	"strings"
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
