@@ -9,7 +9,5 @@ func main() {
 	i := infra.New("config/config.json")
 	i.SetMode()
 
-	redisClient := i.RedisClient()
-
-	api.NewServer(i, redisClient).Run()
+	api.NewServer(i).Run()
 }

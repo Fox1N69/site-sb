@@ -1,7 +1,6 @@
 package infra
 
 import (
-	"context"
 	"errors"
 	"fmt"
 	"sync"
@@ -21,7 +20,6 @@ type Infra interface {
 	GormDB() *gorm.DB
 	Migrate(values ...interface{})
 	Port() string
-	RedisClient() *redis.Client
 }
 
 type infra struct {
@@ -112,9 +110,7 @@ func (i *infra) GormDB() *gorm.DB {
 	return grm
 }
 
-var (
-	migrateOnce sync.Once
-)
+var migrateOnce sync.Once
 
 func (i *infra) Migrate(values ...interface{}) {
 	migrateOnce.Do(func() {
@@ -147,26 +143,3 @@ var (
 	rdbOnce sync.Once
 	rdb     *redis.Client
 )
-
-func (i *infra) RedisClient() *redis.Client {
-	rdbOnce.Do(func() {
-		config := i.Config().Sub("redis")
-		addr := config.GetString("addr")
-		password := config.GetString("password")
-		db := config.GetInt("db")
-
-		rdb = redis.NewClient(&redis.Options{
-			Addr:     addr,
-			Password: password,
-			DB:       db,
-		})
-
-		if _, err := rdb.Ping(context.Background()).Result(); err != nil {
-			logrus.Fatalf("[infra][RedisClient][rdb.Ping] %v", err)
-		}
-
-		logrus.Println("Connected to Redis")
-	})
-
-	return rdb
-}
