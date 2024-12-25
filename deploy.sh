@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Перейдите в директорию вашего приложения
-cd sitesb || exit
+cd sitesb/site-sb || exit
 
 # Получите последние изменения
 git pull origin main
