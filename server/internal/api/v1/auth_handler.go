@@ -13,7 +13,6 @@ import (
 	"site-sb/internal/service"
 	"strconv"
 
-	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
 	validation "github.com/go-ozzo/ozzo-validation"
 	"github.com/go-ozzo/ozzo-validation/is"
@@ -136,12 +135,6 @@ func (h *authUserHandler) Login(c *gin.Context) {
 		response.New(c).Error(http.StatusBadRequest, errors.New("username not match"))
 		return
 	}
-
-	session := sessions.Default(c)
-	session.Set("user_id", user.ID)
-	session.Set("role", user.Role)
-	session.Set("fio", user.FIO)
-	session.Save()
 
 	expired, token := token.NewToken(h.infra.Config().GetString("secret.key")).GenerateToken(data.Username, user.Role)
 	c.JSON(http.StatusOK, gin.H{
