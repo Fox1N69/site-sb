@@ -1,5 +1,19 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import "@/assets/styles/admin.scss";
+import axios from "axios";
+
+interface Post {
+  id: number;
+  preview_image: string;
+  full_image: string;
+  title: string;
+  description: string;
+  text: string;
+}
+
+const response = await axios.get<Post[]>("http://127.0.0.1:4000/post/");
+const data: Post[] = response.data;
 ---
 
 <script>
@@ -27,6 +41,13 @@ import Layout from "@/layouts/Layout.astro";
         if (logoutButton) {
             logoutButton.addEventListener("click", logout);
         }
+
+
+        const deleteButtons = document.querySelectorAll(".delete-button");
+        deleteButtons.forEach((button) => {
+            const postId = button.id.split("-")[1]; // Извлекаем ID из ID кнопки
+            button.addEventListener("click", () => deletePost(postId));
+        });
 
         // Добавляем обработчик для отправки формы
         const postForm = document.getElementById(
@@ -75,6 +96,26 @@ import Layout from "@/layouts/Layout.astro";
             });
         }
     };
+
+    async function deletePost(postId) {
+        try {
+            const response = await fetch(`http://89.104.70.77:4000/admin/post/delete/${postId}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`, // Добавляем токен авторизации
+                },
+            });
+
+            if (response.ok) {
+                alert("Новость успешно удалена!");
+            } else {
+                alert("Ошибка при удалении новости: " + response.statusText);
+            }
+        } catch (error) {
+            console.error("Ошибка:", error);
+            alert("Произошла ошибка при удалении новости.");
+        }
+    }
 </script>
 
 <Layout title="admin">
@@ -102,113 +143,48 @@ import Layout from "@/layouts/Layout.astro";
         </div>
 
         <div class="container">
-            <form id="post-form">
-                <h2>Создание новости</h2>
-                <label>
-                    Заголовок:
-                    <input type="text" name="title" required />
-                </label>
-                <label>
-                    Превью изображение URL:
-                    <input type="text" name="preview_image" required />
-                </label>
-                <label>
-                    Полное изображение URL:
-                    <input type="text" name="full_image" />
-                </label>
-                <label>
-                    Описание:
-                    <textarea name="description" required></textarea>
-                </label>
-                <label>
-                    Текст:
-                    <textarea name="text" required></textarea>
-                </label>
-                <button type="submit">Создать новость</button>
-            </form>
+            <div class="news_form">
+                <form id="post-form">
+                    <h2>Создание новости</h2>
+                    <label>
+                        Заголовок:
+                        <input type="text" name="title" required />
+                    </label>
+                    <label>
+                        Превью изображение URL:
+                        <input type="text" name="preview_image" required />
+                    </label>
+                    <label>
+                        Полное изображение URL:
+                        <input type="text" name="full_image" />
+                    </label>
+                    <label>
+                        Описание:
+                        <textarea name="description" required></textarea>
+                    </label>
+                    <label>
+                        Текст:
+                        <textarea name="text" required></textarea>
+                    </label>
+                    <button type="submit">Создать новость</button>
+                </form>
+            </div>
+
+            <div class="news_list">
+                <h2>Удаленте новостей</h3>
+                <div class="news">
+                {
+                    data.map((item) => (
+                    <ul key={item.id}>
+                        <li>{item.title}</li>
+                        <button id={`delButton-${item.id}`} class="delete-button">
+                            <img src="delete_icon.svg" alt="">
+                        </button>
+                    </ul>
+                    ))
+                }
+                </div>
+            </div>
         </div>
     </div>
 </Layout>
-
-<style lang="scss" scoped>
-    #protected-content {
-        padding: 50px 50px;
-        text-align: center;
-    }
-
-    .header {
-        height: 35px;
-        padding-bottom: 123.4px;
-        font-family: Roboto;
-        font-size: 15px;
-
-        #logout-button {
-            border: 0;
-            font-size: 18px;
-            font-weight: 700;
-            color: red;
-            background: white;
-        }
-
-        .navigation {
-            display: flex;
-            flex-direction: column;
-            gap: 17px;
-        }
-
-        a {
-            color: black;
-        }
-
-        .navigation__list {
-            list-style: none;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-            gap: 200px;
-        }
-
-        .navigation__list > li {
-            color: black;
-        }
-
-        .navigation__underline {
-            border-bottom: 1px solid black;
-            width: 95.5%;
-        }
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-        margin-top: 20px;
-
-        label {
-            margin-bottom: 10px;
-        }
-
-        input,
-        textarea {
-            margin-top: 5px;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        button {
-            margin-top: 10px;
-            padding: 10px;
-            background-color: blue;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: darkblue;
-        }
-    }
-</style>
