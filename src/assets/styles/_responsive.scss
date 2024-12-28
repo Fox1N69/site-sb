@@ -1,4 +1,4 @@
-@media (min-width: 200px) and (max-width: 470px) {
+@media (min-width: 200px) and (max-width: 500px) {
   .main {
     height: 100svh !important;
     display: flex;
@@ -237,8 +237,10 @@
     }
   }
 
+
+  //news section styles for mobile
+
   .news {
-    display: none;
     height: 724px;
   }
 
@@ -247,12 +249,12 @@
     width: 390px;
     height: 112px;
 
-    margin-top: 70px;
+    margin-top: 50px;
 
     display: flex;
     flex-direction: column;
-    gap: 50px;
-    text-align: center;
+    align-items: center;
+    gap: 30px;
 
     .news__titleOne {
       color: #2c2c2c;
@@ -278,21 +280,21 @@
     }
   }
 
+
   .news__banner {
-    display: none;
     height: 463px;
     position: absolute;
     z-index: -1;
     width: 100%;
+    height: 226px;
   }
 
   .news__content {
-    display: none;
+    display: flex;
     flex-direction: column;
   }
 
   .news__cards {
-    display: none;
     margin-top: 70px;
 
     display: flex;
@@ -301,7 +303,6 @@
   }
 
   .new__card {
-    display: none;
     height: 420px;
     width: 370px;
     background: #272727;
@@ -338,11 +339,10 @@
   }
 
   .btn__fullnews {
-    display: none;
+    display: none !important;
     margin-left: 1018px;
     margin-top: 65.3px;
 
-    display: flex;
     flex-direction: column;
     gap: 10px;
 
@@ -513,6 +513,8 @@
     }
   }
 
+  //investors section styles for mobile
+
   .investors {
     height: 407px;
 
@@ -524,21 +526,29 @@
     max-width: 1240px;
     height: 407px;
     padding: 104px 58px 84px 59px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
   }
 
   .investors__cards {
     height: 220px;
-    display: flex;
-    flex-direction: row;
-    gap: 60px;
+    display: contents;
 
     .invest__card {
       background-color: #333333;
 
-      width: 200px;
-      height: 220px;
+      width: 120px;
+      height: 140px;
+    }
+
+    .invest__card-pc {
+      display: none;
     }
   }
+
+  //footer section styles for mobile
 
   .footer {
     background-color: #1c1c1c;
