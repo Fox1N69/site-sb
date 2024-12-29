@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd server || exit
+cd sitesb/site-sb/server || exit
 
 git pull origin main --force
 
