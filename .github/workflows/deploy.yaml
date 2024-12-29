@@ -26,6 +26,10 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H 89.104.70.77 >> ~/.ssh/known_hosts
 
-      - name: Deploy to Server
+      - name: Deploy client
         run: |
-          ssh root@89.104.70.77 'bash -s' < ./deploy.sh
+          ssh root@89.104.70.77 'bash -s' < ./deploy-client.sh
+
+      - name: Deploy server
+        run: |
+          ssh root@89.104.70.77 'bash -s' < ./deploy-server.sh
