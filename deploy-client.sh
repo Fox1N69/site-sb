@@ -4,7 +4,7 @@
 cd sitesb/site-sb || exit
 
 # Получите последние изменения
-git pull origin main
+git pull origin main --force
 
 # Соберите проект
 yarn

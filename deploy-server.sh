@@ -2,7 +2,7 @@
 
 cd server || exit
 
-git pull origin main
+git pull origin main --force
 
 go build -o bin/server ./cmd/app/main.go
 
