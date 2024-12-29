@@ -1,13 +1,21 @@
 ---
-import NewsSwiper from "../MobileSwiperNews/SwiperNews";
-import "@styles/news_swiper.scss";
+import NewsSwiper from "../MNewsSwiper/SwiperNews.tsx";
 ---
 
 <section id="mobile__news">
+    <img src="/mobile-news-banner.png" alt="" class="news__banner">
+    <div class="news--swiper">
+        <NewsSwiper client:load/>
+    </div>
 </section>
 
 <style lang="scss" scoped>
+@media (min-width: 200px) and (max-width: 500px) {
   #mobile__news {
-    background-image: url("/public/mobile-news-banner.png");
+      height: 720px;
   }
+  
+}
+
+
 </style>

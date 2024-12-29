@@ -2,6 +2,7 @@
   .swiper-pagination {
     display: none;
   }
+
   .swiper-slide-active {
     .fullname {
       display: block;
@@ -167,11 +168,13 @@
     border: 0px solid black;
     border-radius: 2px;
   }
+
   grid-area: slideleft;
 }
 
 .swiper-slide-next {
   width: 400px !important;
+
   .slide__right {
     display: none;
   }
@@ -189,6 +192,7 @@
   .slide__right {
     display: none;
   }
+
   .slide__right {
     display: none;
   }
@@ -204,10 +208,12 @@
   button {
     background: none;
     border: none;
+
     :hover {
       cursor: pointer;
     }
   }
+
   #next-arrow-img {
     transform: rotate(180deg);
   }
@@ -220,6 +226,7 @@
 @media (max-width: 1500px) {
   .swiper-slide-next {
     width: 400px !important;
+
     .slide__right {
       display: none;
     }
@@ -242,6 +249,7 @@
   .swiper-wrapper {
     gap: 0px;
   }
+
   .swiper-btns {
     grid-area: slider;
     gap: 75%;
