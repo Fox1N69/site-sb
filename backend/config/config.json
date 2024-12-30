@@ -6,7 +6,7 @@
         "port": 4000
     },
     "database": {
-        "host": "localhost",
+        "host": "host.docker.internal",
         "port": "5432",
         "user": "postgres",
         "pass": "8008",

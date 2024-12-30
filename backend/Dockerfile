@@ -14,7 +14,7 @@ ADD . .
 
 RUN go test -short ./...
 
-RUN go build -o /bin/shop-server app/main.go
+RUN go build -o /bin/app cmd/app/main.go
 
 WORKDIR /
 
@@ -22,6 +22,6 @@ RUN rm -r /work
 
 COPY config/config.json /config/config.json
 
-EXPOSE 3000
+EXPOSE 4000
 
-CMD /bin/shop-server
+CMD ["/bin/app"]
