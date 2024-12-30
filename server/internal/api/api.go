@@ -9,6 +9,7 @@ import (
 
 	"github.com/gin-gonic/contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 )
 
 type Server interface {
@@ -38,6 +39,10 @@ func (c *server) Run() {
 	c.v1()
 
 	c.gin.Run(c.infra.Port())
+
+	if err := c.gin.RunTLS(":443", "/etc/letsencrypt/live/sib-rub.ru/fullchain.pem", "/etc/letsencrypt/live/sib-rub.ru/privkey.pem"); err != nil {
+		logrus.Fatal("Failed start TLS server")
+	}
 }
 
 func (c *server) handlers() {
