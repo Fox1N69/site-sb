@@ -16,12 +16,15 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    environment:
+      - DB_HOST=postgres  
+      - DB_USER=postgres
+      - DB_NAME=sitesb
+      - DB_PASS=8008
     ports:
       - "4000:4000"
     networks:
       - app-network
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
 
   frontend:
     build:
@@ -29,11 +32,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "4321:4321"
-    environment:
-      - NODE_ENV=production
-    volumes:
-      - .:/app
-      - /app/node_modules
     networks:
       - app-network
 
