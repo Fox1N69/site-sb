@@ -28,7 +28,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "4321:4321"
     environment:
       - NODE_ENV=production
       - DB_HOST=postgres  
