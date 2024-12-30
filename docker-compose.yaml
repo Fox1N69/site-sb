@@ -31,10 +31,6 @@ services:
       - "4321:4321"
     environment:
       - NODE_ENV=production
-      - DB_HOST=postgres  
-      - DB_USER=postgres
-      - DB_NAME=sitesb
-      - DB_PASS=8008
     volumes:
       - .:/app
       - /app/node_modules
