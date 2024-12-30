@@ -6,26 +6,32 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "4000:4000"  
+      - "4000:4000"
     networks:
-      - app-network
+      app-network:
+        # Используйте вашу сеть с MTU
+        driver: bridge
     extra_hosts:
-        - "host.docker.internal:host-gateway"
+      - "host.docker.internal:host-gateway"
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "80:80"  
+      - "80:80"
     environment:
       - NODE_ENV=production
     volumes:
       - .:/app
       - /app/node_modules
     networks:
-      - app-network
+      app-network:
+        # Используйте вашу сеть с MTU
+        driver: bridge
 
 networks:
   app-network:
     driver: bridge
+    driver_opts:
+      com.docker.network.driver.mtu: 1450
