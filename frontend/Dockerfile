@@ -14,6 +14,7 @@ COPY . .
 RUN yarn build
 
 FROM base AS runtime
+
 COPY --from=prod-deps /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
 

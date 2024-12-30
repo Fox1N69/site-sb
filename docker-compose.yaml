@@ -1,6 +1,17 @@
 version: '3.8'
 
 services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: sitesb
+      POSTGRES_PASSWORD: 8008
+    ports:
+      - "5432:5432"
+    networks:
+      - app-network
+
   backend:
     build:
       context: ./backend
@@ -20,6 +31,10 @@ services:
       - "80:80"
     environment:
       - NODE_ENV=production
+      - DB_HOST=postgres  
+      - DB_USER=postgres
+      - DB_NAME=sitesb
+      - DB_PASS=8008
     volumes:
       - .:/app
       - /app/node_modules
