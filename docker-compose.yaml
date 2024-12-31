@@ -35,8 +35,34 @@ services:
     networks:
       - app-network
 
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - cert-data:/etc/letsencrypt
+    ports:
+      - "80:80"
+      - "443:443"  
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - app-network
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - cert-data:/etc/letsencrypt
+      - ./nginx:/etc/nginx/conf.d
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    networks:
+      - app-network
+
 networks:
   app-network:
     driver: bridge
     driver_opts:
       com.docker.network.driver.mtu: 1450
+
+volumes:
+  cert-data:
