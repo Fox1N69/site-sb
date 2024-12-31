@@ -1,5 +1,3 @@
-# This docker file not include for postgre database that use in this project
-
 FROM golang:alpine
 
 RUN apk update && apk add --no-cache gcc libc-dev
