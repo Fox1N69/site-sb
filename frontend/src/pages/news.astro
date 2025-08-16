@@ -5,6 +5,7 @@ import "../assets/styles/index.scss";
 import Footer from "../components/Footer/Footer.astro";
 import axios from "axios";
 import NewsCard from "@/components/News/NewsCard.astro";
+import { API_BASE_URL } from "@/config/api";
 
 interface Post {
   id: number;
@@ -15,7 +16,7 @@ interface Post {
   text: string;
 }
 
-const response = await axios.get<Post[]>("http://127.0.0.1:4000/post/");
+const response = await axios.get<Post[]>(`${API_BASE_URL}/post/`);
 const data: Post[] = response.data;
 ---
 

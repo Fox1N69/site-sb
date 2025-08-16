@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import "@/assets/styles/admin.scss";
 import axios from "axios";
+import { API_BASE_URL } from "@/config/api";
 
 interface Post {
   id: number;
@@ -12,7 +13,7 @@ interface Post {
   text: string;
 }
 
-const response = await axios.get<Post[]>("http://127.0.0.1:4000/post/");
+const response = await axios.get<Post[]>(`${API_BASE_URL}/post/`);
 const data: Post[] = response.data;
 ---
 

@@ -8,6 +8,7 @@ import NavBar from "@/components/Header/Navigation.astro";
 import Mnews from "@/components/MobileSection/Mnews.astro";
 import NewsCard from "@components/News/NewsCard.astro";
 import axios from "axios";
+import { API_BASE_URL } from "@/config/api";
 
 interface Post {
     id: number;
@@ -18,7 +19,7 @@ interface Post {
     text: string;
 }
 
-const resp = await axios.get<Post[]>("http://localhost:4000/post/");
+const resp = await axios.get<Post[]>(`${API_BASE_URL}/post/`);
 const data: Post[] = resp.data;
 ---
 

@@ -1,16 +1,22 @@
-version: "3.8"
-
 services:
   postgres:
-    image: postgres:latest
+    image: postgres:15-alpine
     environment:
       POSTGRES_USER: postgres
       POSTGRES_DB: sitesb
       POSTGRES_PASSWORD: 8008
     ports:
       - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
       - app-network
+    restart: unless-stopped
 
   backend:
     build:
@@ -21,19 +27,34 @@ services:
       - DB_USER=postgres
       - DB_NAME=sitesb
       - DB_PASS=8008
+      - DB_PORT=5432
     ports:
       - "4000:4000"
+    depends_on:
+      postgres:
+        condition: service_healthy
     networks:
       - app-network
+    restart: unless-stopped
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    environment:
+      - HOST=0.0.0.0
+      - PORT=4321
+      - API_URL=http://backend:4000
     ports:
       - "4321:4321"
+    depends_on:
+      - backend
     networks:
       - app-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
 
 networks:
   app-network:
