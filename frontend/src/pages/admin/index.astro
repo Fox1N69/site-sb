@@ -69,12 +69,12 @@ const data: Post[] = response.data;
 
                 try {
                     const response = await fetch(
-                        "https://89.104.70.77:4000/admin/post/create",
+                        "http://localhost:4000/admin/post/create",
                         {
                             method: "POST",
                             headers: {
                                 "Content-Type": "application/json",
-                                Authorization: `Bearer ${token}`, // Добавляем токен авторизации, если нужно
+                                Authorization: `Bearer ${token}`, 
                             },
                             body: JSON.stringify(data),
                         },
@@ -99,7 +99,7 @@ const data: Post[] = response.data;
 
     async function deletePost(postId: string) {
         try {
-            const response = await fetch(`https://89.104.70.77:4000/admin/post/delete/${postId}`, {
+            const response = await fetch(`http://localhost:4000/admin/post/delete/${postId}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: `Bearer ${token}`, // Добавляем токен авторизации

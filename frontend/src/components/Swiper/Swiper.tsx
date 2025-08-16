@@ -78,7 +78,7 @@ export default function MySwiper() {
             <SwiperSlide className="swiper__slide">
                 <div className="fullname">Пинигин Станислав</div>
                 <div className="slide__left">
-                    <img src="" alt="" />
+                    <img src="/stas.jpg" alt="" />
                 </div>
                 <div className="slide__right">
                     <div className="team__info">
@@ -118,8 +118,49 @@ export default function MySwiper() {
             {/*Slide 4*/}
 
             <SwiperSlide className="swiper__slide">
+                <div className="fullname">Пинигин Вячеслав</div>
                 <div className="slide__left">
-                    <img src="/video.png" alt="" />
+                    <img src="/" alt="" />
+                </div>
+                <div className="slide__right">
+                    <div className="team__info">
+                        <div className="team__info_rank">Должность</div>
+                        <div className="team__info_discription">
+                            Lorem ipsum dolor sit amet consectetur. Morbi sit ut id feugiat
+                            nisl amet aliquet nibh at. Quam fringilla orci pellentesque orci.
+                            Arcu in nisi neque nunc. A auctor elit orci sem risus pellentesque
+                            facilisi ullamcorper pharetra. Eu ante amet massa vitae quis.
+                            Scelerisque faucibus ipsum nibh augue.
+                        </div>
+                    </div>
+                </div>
+            </SwiperSlide>
+
+
+            <SwiperSlide className="swiper__slide">
+                <div className="fullname">Вильский Александар</div>
+                <div className="slide__left">
+                    <img src="/" alt="" />
+                </div>
+                <div className="slide__right">
+                    <div className="team__info">
+                        <div className="team__info_rank">Должность</div>
+                        <div className="team__info_discription">
+                            Lorem ipsum dolor sit amet consectetur. Morbi sit ut id feugiat
+                            nisl amet aliquet nibh at. Quam fringilla orci pellentesque orci.
+                            Arcu in nisi neque nunc. A auctor elit orci sem risus pellentesque
+                            facilisi ullamcorper pharetra. Eu ante amet massa vitae quis.
+                            Scelerisque faucibus ipsum nibh augue.
+                        </div>
+                    </div>
+                </div>
+            </SwiperSlide>
+
+
+            <SwiperSlide className="swiper__slide">
+                <div className="fullname">Мартынов Александар</div>
+                <div className="slide__left">
+                    <img src="/" alt="" />
                 </div>
                 <div className="slide__right">
                     <div className="team__info">

@@ -10,7 +10,7 @@ import Layout from "@/layouts/Layout.astro";
         if (username && password) {
             // Отправляем запрос на сервер
             const response = await fetch(
-                "https://89.104.70.77:4000/v1/account/auth/login",
+                "http://localhost:4000/v1/account/auth/login",
                 {
                     method: "POST",
                     headers: {
