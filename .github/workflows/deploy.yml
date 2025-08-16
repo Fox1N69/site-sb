@@ -1,0 +1,61 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.8.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        
+    - name: Add server to known hosts
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+        
+    - name: Deploy to server
+      run: |
+        ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+          cd /opt/site-sb
+          git pull origin main
+          docker compose -f docker-compose.prod.yaml up --build -d
+          
+          # Wait for services to start
+          sleep 30
+          
+          # Verify deployment
+          if curl -f http://localhost:4321 > /dev/null 2>&1; then
+            echo "✅ Frontend is responding"
+          else
+            echo "❌ Frontend is not responding"
+            exit 1
+          fi
+          
+          if curl -f http://localhost:4000/ > /dev/null 2>&1; then
+            echo "✅ Backend is responding"
+          else
+            echo "❌ Backend is not responding"
+            exit 1
+          fi
+          
+          echo "🚀 Deployment successful!"
+        EOF
+        
+    - name: Notify deployment status
+      if: always()
+      run: |
+        if [ ${{ job.status }} == 'success' ]; then
+          echo "✅ Deployment completed successfully"
+        else
+          echo "❌ Deployment failed"
+        fi
