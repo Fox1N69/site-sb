@@ -13,7 +13,7 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 # Configuration
-REPO_URL="https://github.com/your-username/site-sb.git"  # Update with your repo
+REPO_URL="https://github.com/Fox1N69/site-sb.git" # Update with your repo
 PROJECT_DIR="/opt/site-sb"
 
 log_info() {
@@ -69,7 +69,7 @@ log_info "Updating system packages..."
 sudo apt update && sudo apt upgrade -y
 
 # Install Docker
-if ! command -v docker &> /dev/null; then
+if ! command -v docker &>/dev/null; then
     log_info "Installing Docker..."
     curl -fsSL https://get.docker.com -o get-docker.sh
     sudo sh get-docker.sh
@@ -96,7 +96,7 @@ cd $PROJECT_DIR
 
 # Create environment file
 log_info "Creating environment configuration..."
-cat > .env << EOF
+cat >.env <<EOF
 DB_PASSWORD=$DB_PASSWORD
 JWT_SECRET=$JWT_SECRET
 NODE_ENV=production
@@ -122,7 +122,7 @@ sudo ufw allow 443
 
 # Configure Nginx
 log_info "Configuring Nginx..."
-sudo tee /etc/nginx/sites-available/site-sb > /dev/null << EOF
+sudo tee /etc/nginx/sites-available/site-sb >/dev/null <<EOF
 server {
     listen 80;
     server_name $DOMAIN www.$DOMAIN;
@@ -175,7 +175,7 @@ sudo mkdir -p /var/www/certbot
 sudo certbot --nginx -d $DOMAIN -d www.$DOMAIN --email $EMAIL --agree-tos --non-interactive
 
 # Update Nginx config for HTTPS
-sudo tee /etc/nginx/sites-available/site-sb > /dev/null << EOF
+sudo tee /etc/nginx/sites-available/site-sb >/dev/null <<EOF
 server {
     listen 80;
     server_name $DOMAIN www.$DOMAIN;
@@ -234,7 +234,7 @@ sudo systemctl reload nginx
 log_info "Setting up monitoring and maintenance..."
 
 # Create status script
-sudo tee /usr/local/bin/site-sb-status.sh > /dev/null << 'EOF'
+sudo tee /usr/local/bin/site-sb-status.sh >/dev/null <<'EOF'
 #!/bin/bash
 echo "=== Site-SB Status Report ==="
 echo "Date: $(date)"
@@ -250,7 +250,7 @@ docker compose -f docker-compose.prod.yaml ps
 EOF
 
 # Create backup script
-sudo tee /usr/local/bin/site-sb-backup.sh > /dev/null << 'EOF'
+sudo tee /usr/local/bin/site-sb-backup.sh >/dev/null <<'EOF'
 #!/bin/bash
 BACKUP_DIR="/opt/site-sb/backups"
 DATE=$(date +%Y%m%d_%H%M%S)
@@ -266,11 +266,17 @@ sudo chmod +x /usr/local/bin/site-sb-status.sh
 sudo chmod +x /usr/local/bin/site-sb-backup.sh
 
 # Setup cron jobs
-(crontab -l 2>/dev/null; echo "0 2 * * * /usr/local/bin/site-sb-backup.sh") | crontab -
-(sudo crontab -l 2>/dev/null; echo "0 12 * * * /usr/bin/certbot renew --quiet") | sudo crontab -
+(
+    crontab -l 2>/dev/null
+    echo "0 2 * * * /usr/local/bin/site-sb-backup.sh"
+) | crontab -
+(
+    sudo crontab -l 2>/dev/null
+    echo "0 12 * * * /usr/bin/certbot renew --quiet"
+) | sudo crontab -
 
 # Create aliases
-cat >> ~/.bashrc << 'EOF'
+cat >>~/.bashrc <<'EOF'
 
 # Site-SB aliases
 alias site-sb-start='cd /opt/site-sb && docker compose -f docker-compose.prod.yaml up -d'
@@ -285,11 +291,11 @@ EOF
 log_info "Performing final verification..."
 sleep 10
 
-if curl -f https://$DOMAIN > /dev/null 2>&1; then
+if curl -f https://$DOMAIN >/dev/null 2>&1; then
     log_success "HTTPS site is accessible!"
 else
     log_warning "HTTPS not accessible yet, checking HTTP..."
-    if curl -f http://$DOMAIN > /dev/null 2>&1; then
+    if curl -f http://$DOMAIN >/dev/null 2>&1; then
         log_warning "HTTP accessible, HTTPS setup may need more time"
     else
         log_error "Site not accessible"
@@ -323,3 +329,4 @@ log_success "Installation completed successfully!"
 
 # Show current status
 /usr/local/bin/site-sb-status.sh
+
