@@ -184,7 +184,9 @@ const data: Post[] = resp.data;
     </div>
 </section>
 
-<Mnews />
+<div class="mobile-news-section">
+    <Mnews />
+</div>
 <section class="exhibition">
     <img src="/smoke-ex-l.png" alt="" class="smoke-ex" />
     <img src="/smoke-ex.png" alt="" class="smoke-ex-l" />
@@ -298,5 +300,15 @@ const data: Post[] = resp.data;
         flex-direction: column;
         background: url("/backround-image.png");
         background-repeat: no-repeat;
+    }
+
+    // Hide mobile news section on desktop and laptop
+    .mobile-news-section {
+        display: block;
+
+        // Hide on tablets and larger
+        @media (min-width: 769px) {
+            display: none;
+        }
     }
 </style>
