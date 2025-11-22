@@ -3,110 +3,463 @@ import NavBar from "../components/Header/Navigation_otherPage.astro";
 import Layout from "../layouts/Layout.astro";
 import "../assets/styles/index.scss";
 import Footer from "../components/Footer/Footer.astro";
-import axios from "axios";
-import NewsCard from "@/components/News/NewsCard.astro";
 import { API_BASE_URL } from "@/config/api";
+import type { Post } from "@/types/post";
 
-interface Post {
-  id: number;
-  preview_image: string;
-  full_image: string;
-  title: string;
-  description: string;
-  text: string;
+let posts: Post[] = [];
+let error: string | null = null;
+
+try {
+    const response = await fetch(`${API_BASE_URL}/post/`);
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    posts = Array.isArray(data) ? data : [];
+
+    // Sort by creation date (newest first)
+    posts.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+} catch (e) {
+    error = "Не удалось загрузить новости. Пожалуйста, попробуйте позже.";
+    console.error("Error fetching posts:", e);
 }
 
-const response = await axios.get<Post[]>(`${API_BASE_URL}/post/`);
-const data: Post[] = response.data;
+// Format date helper
+const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("ru-RU", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
+};
 ---
 
-<Layout title="NewsLayout">
-  <div class="news__header">
-    <div class="news__container">
-      <NavBar />
-      <div class="text__container">
-        <h1 class="news__title">Новости нашего клуба</h1>
-        <p class="news__description">
-          Lorem ipsum dolor sit amet consectetur. Odio consequat quis quis elit
-          eu. Tempus facilisis semper nullam donec sit sed ultricies viverra.
-          Congue diam purus risus praesent elit.
-        </p>
-      </div>
-    </div>
-  </div>
+<Layout title="Новости - Футбольный клуб">
+    <div class="page__wrapper">
+        <div class="news__header">
+            <div class="news__container">
+                <NavBar />
+                <div class="text__container">
+                    <h1 class="news__title">Новости нашего клуба</h1>
+                    <p class="news__description">
+                        Будьте в курсе всех событий: матчи, тренировки, достижения команды и многое другое.
+                    </p>
+                </div>
+            </div>
+        </div>
 
-  <section class="news__section">
-    <div class="news">
-      {
-        data.map((item) => (
-          <ul class="news__card">
-                <NewsCard id={item.id} preview_image={item.preview_image} title={item.title} description={item.description} text={item.text}/>
-          </ul>
-        ))
-      }
+        <section class="news__section">
+            {
+                error ? (
+                    <div class="error__message">
+                        <div class="error__content">
+                            <svg class="error__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            <p>{error}</p>
+                        </div>
+                    </div>
+                ) : posts.length === 0 ? (
+                    <div class="empty__message">
+                        <div class="empty__content">
+                            <svg class="empty__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                            </svg>
+                            <p>Новостей пока нет</p>
+                            <span class="empty__subtitle">Скоро здесь появятся свежие новости!</span>
+                        </div>
+                    </div>
+                ) : (
+                    <div class="news__grid">
+                        {posts.map((post) => (
+                            <article class="news__card">
+                                <a href={`/news/${post.id}`} class="news__card-link">
+                                    <div class="news__card-image-wrapper">
+                                        {post.preview_image ? (
+                                            <img
+                                                src={post.preview_image}
+                                                alt={post.title}
+                                                class="news__card-image"
+                                                loading="lazy"
+                                            />
+                                        ) : (
+                                            <div class="news__card-placeholder">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                </svg>
+                                            </div>
+                                        )}
+                                        <div class="news__card-overlay"></div>
+                                    </div>
+
+                                    <div class="news__card-content">
+                                        {post.created_at && (
+                                            <time class="news__card-date" datetime={post.created_at}>
+                                                {formatDate(post.created_at)}
+                                            </time>
+                                        )}
+
+                                        <h2 class="news__card-title">{post.title}</h2>
+
+                                        <p class="news__card-description">
+                                            {post.description}
+                                        </p>
+
+                                        <div class="news__card-footer">
+                                            <span class="read__more">
+                                                Читать полностью
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </article>
+                        ))}
+                    </div>
+                )
+            }
+        </section>
+
+        <Footer />
     </div>
-  </section>
-  <Footer />
 </Layout>
 
 <style lang="scss" scoped>
-  .news__container {
-    padding: 0 calc(50% - 749px);
-  }
-
-  .news__section {
-    color: white;
-    padding: 5px 20px;
-
-    .news {
-      padding: 30px 30px;
-      height: max-content;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      justify-items: center;
-      gap: 50px;
-          // .news__card {
-          //     height: 100%;
-          //     width: 100%;
-          //     padding: 10px;
-          //     border: 1px solid white;
-          //     border-radius: 7px;
-          //     display: flex;
-          //     flex-direction: column;
-          //     gap: 10px;
-          //     color: white;
-          // }
-    }
-  }
-
-  .news__header {
-    height: 460px;
-    background-color: white;
-
-    padding-top: 40px;
-  }
-
-  .text__container {
-    width: 533px;
-    min-height: 231px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    .news__title {
-      width: 377px;
-
-      font-family: Montserrat, sans-serif;
-      font-size: 50px;
-      font-weight: bold;
+    .page__wrapper {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     }
 
-    .news__description {
-      width: 533px;
-      min-height: 79px;
-      font-family: Montserrat, sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 150%;
+    .news__container {
+        padding: 0 calc(50% - 749px);
+
+        @media (max-width: 1500px) {
+            padding: 0 40px;
+        }
+
+        @media (max-width: 768px) {
+            padding: 0 20px;
+        }
+
+        @media (max-width: 480px) {
+            padding: 0 15px;
+        }
     }
-  }
+
+    .news__header {
+        background-color: white;
+        padding: 40px 0 60px;
+
+        @media (max-width: 768px) {
+            padding: 30px 0 40px;
+        }
+    }
+
+    .text__container {
+        max-width: 600px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        @media (max-width: 768px) {
+            max-width: 100%;
+        }
+
+        .news__title {
+            font-family: Montserrat, sans-serif;
+            font-size: 50px;
+            font-weight: 700;
+            color: #1a1a2e;
+            line-height: 1.2;
+
+            @media (max-width: 768px) {
+                font-size: 36px;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 28px;
+            }
+        }
+
+        .news__description {
+            font-family: Montserrat, sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 1.6;
+            color: #555;
+
+            @media (max-width: 768px) {
+                font-size: 16px;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 15px;
+            }
+        }
+    }
+
+    .news__section {
+        flex: 1;
+        padding: 60px 40px;
+
+        @media (max-width: 768px) {
+            padding: 40px 20px;
+        }
+
+        @media (max-width: 480px) {
+            padding: 30px 15px;
+        }
+    }
+
+    .news__grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 30px;
+        max-width: 1400px;
+        margin: 0 auto;
+
+        @media (max-width: 768px) {
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 480px) {
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+    }
+
+    .news__card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(216, 195, 173, 0.3);
+
+            .news__card-overlay {
+                background: rgba(0, 0, 0, 0.4);
+            }
+
+            .news__card-image {
+                transform: scale(1.05);
+            }
+
+            .read__more {
+                color: #d8c3ad;
+
+                svg {
+                    transform: translateX(5px);
+                }
+            }
+        }
+    }
+
+    .news__card-link {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        height: 100%;
+    }
+
+    .news__card-image-wrapper {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.05);
+
+        @media (max-width: 480px) {
+            height: 200px;
+        }
+    }
+
+    .news__card-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .news__card-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+
+        svg {
+            width: 80px;
+            height: 80px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+    }
+
+    .news__card-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.2);
+        transition: background 0.3s ease;
+    }
+
+    .news__card-content {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+
+        @media (max-width: 480px) {
+            padding: 15px;
+        }
+    }
+
+    .news__card-date {
+        font-family: Montserrat, sans-serif;
+        font-size: 13px;
+        color: #8b9dc3;
+        font-weight: 500;
+        text-transform: lowercase;
+
+        @media (max-width: 480px) {
+            font-size: 12px;
+        }
+    }
+
+    .news__card-title {
+        font-family: Montserrat, sans-serif;
+        font-size: 22px;
+        font-weight: 700;
+        color: white;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin: 0;
+
+        @media (max-width: 768px) {
+            font-size: 20px;
+        }
+
+        @media (max-width: 480px) {
+            font-size: 18px;
+        }
+    }
+
+    .news__card-description {
+        font-family: Montserrat, sans-serif;
+        font-size: 15px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.7);
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin: 0;
+
+        @media (max-width: 480px) {
+            font-size: 14px;
+            -webkit-line-clamp: 2;
+        }
+    }
+
+    .news__card-footer {
+        margin-top: auto;
+        padding-top: 10px;
+    }
+
+    .read__more {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: Montserrat, sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.8);
+        transition: color 0.3s ease;
+
+        svg {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+    }
+
+    .error__message,
+    .empty__message {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 400px;
+        text-align: center;
+    }
+
+    .error__content,
+    .empty__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 40px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        max-width: 500px;
+
+        @media (max-width: 480px) {
+            padding: 30px 20px;
+        }
+
+        p {
+            font-family: Montserrat, sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: white;
+            margin: 0;
+
+            @media (max-width: 480px) {
+                font-size: 18px;
+            }
+        }
+    }
+
+    .error__icon,
+    .empty__icon {
+        width: 64px;
+        height: 64px;
+        color: #ff6b6b;
+
+        @media (max-width: 480px) {
+            width: 48px;
+            height: 48px;
+        }
+    }
+
+    .empty__icon {
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    .empty__subtitle {
+        font-family: Montserrat, sans-serif;
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.6);
+
+        @media (max-width: 480px) {
+            font-size: 14px;
+        }
+    }
 </style>

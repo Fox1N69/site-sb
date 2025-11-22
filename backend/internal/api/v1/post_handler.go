@@ -60,12 +60,23 @@ func (h *postHandler) Update(c *gin.Context) {
 		return
 	}
 
-	if err := h.service.UpdatePost(uint(postID)); err != nil {
+	var post models.Post
+	if err := c.ShouldBind(&post); err != nil {
+		response.New(c).Error(400, err)
+		return
+	}
+
+	post.ID = uint(postID)
+
+	if err := h.service.UpdatePost(&post); err != nil {
 		response.New(c).Error(501, err)
 		return
 	}
 
-	c.JSON(200, "post update seccess")
+	c.JSON(200, gin.H{
+		"message": "post update success",
+		"data":    post,
+	})
 }
 
 func (h *postHandler) Delete(c *gin.Context) {

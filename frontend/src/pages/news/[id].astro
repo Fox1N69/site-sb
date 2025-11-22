@@ -1,50 +1,557 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import NavBar from "@/components/Header/Navigation_otherPage.astro";
+import Footer from "@/components/Footer/Footer.astro";
 import { API_BASE_URL } from "@/config/api";
+import type { Post } from "@/types/post";
 
 const { id } = Astro.params;
 
-interface Post {
-  id: number;
-  title: string;
-  description: string;
-  text: string;
+let post: Post | null = null;
+let error: string | null = null;
+
+try {
+    const response = await fetch(`${API_BASE_URL}/post/${id}`);
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    post = await response.json();
+} catch (e) {
+    error = "Новость не найдена или произошла ошибка при загрузке.";
+    console.error("Error fetching post:", e);
 }
 
-const resp = await fetch(`${API_BASE_URL}/post/${id}`);
-const post: Post = await resp.json();
+// Format date helper
+const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("ru-RU", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+    });
+};
 ---
 
-<Layout title="new by id">
-  <main class="new__main">
-    <div class="container">
-      <h1 class="new__title">{post.title}</h1>
-      <p class="new__description">{post.description}</p>
-      <p class="new__text">{post.text}</p>
+<Layout title={post?.title || "Новость"}>
+    <div class="page__wrapper">
+        <div class="nav__wrapper">
+            <NavBar />
+        </div>
+
+        {
+            error ? (
+                <main class="error__container">
+                    <div class="error__content">
+                        <svg class="error__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <h1 class="error__title">Ошибка</h1>
+                        <p class="error__message">{error}</p>
+                        <a href="/news" class="back__button">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                            </svg>
+                            Вернуться к новостям
+                        </a>
+                    </div>
+                </main>
+            ) : (
+                post && (
+                    <main class="news__main">
+                        {/* Hero Section with Image */}
+                        {(post.full_image || post.preview_image) && (
+                            <div class="hero__image">
+                                <img src={post.full_image || post.preview_image} alt={post.title} />
+                                <div class="hero__overlay" />
+                            </div>
+                        )}
+
+                        <article class="article__container">
+                            <div class="article__header">
+                                <a href="/news" class="breadcrumb">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                    Все новости
+                                </a>
+
+                                {post.created_at && (
+                                    <div class="article__meta">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                        <time datetime={post.created_at}>
+                                            {formatDate(post.created_at)}
+                                        </time>
+                                    </div>
+                                )}
+
+                                <h1 class="article__title">{post.title}</h1>
+                            </div>
+
+                            <div class="article__content">
+                                {post.description && (
+                                    <p class="article__description">
+                                        {post.description}
+                                    </p>
+                                )}
+
+                                <div class="article__text">
+                                    {post.text}
+                                </div>
+                            </div>
+
+                            <div class="article__footer">
+                                <a href="/news" class="back__button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                    </svg>
+                                    Вернуться к новостям
+                                </a>
+
+                                <div class="share__section">
+                                    <span class="share__label">Поделиться:</span>
+                                    <div class="share__buttons">
+                                        <button class="share__button" title="Поделиться в VK" onclick={`window.open('https://vk.com/share.php?url=${encodeURIComponent(Astro.url.href)}&title=${encodeURIComponent(post.title)}', '_blank')`}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.39 14.62h-1.5c-.68 0-.87-.54-2.07-1.74-1.05-1.03-1.51-1.17-1.77-1.17-.36 0-.47.11-.47.63v1.59c0 .43-.14.68-1.25.68-1.85 0-3.89-1.12-5.33-3.21-2.18-3.03-2.78-5.31-2.78-5.77 0-.26.11-.5.63-.5h1.5c.47 0 .65.21.83.71.91 2.67 2.44 5.01 3.07 5.01.24 0 .34-.11.34-.71v-2.77c-.07-1.23-.72-1.33-.72-1.77 0-.21.17-.43.44-.43h2.35c.39 0 .54.21.54.68v3.75c0 .39.18.54.29.54.24 0 .44-.15.87-.58 1.33-1.49 2.28-3.79 2.28-3.79.13-.27.33-.5.84-.5h1.5c.6 0 .73.31.6.68-.23 1.06-2.42 4.03-2.42 4.03-.2.32-.27.47 0 .83.2.26.85.83 1.29 1.33.81.91 1.43 1.67 1.6 2.2.17.52-.09.78-.67.78z"/>
+                                            </svg>
+                                        </button>
+                                        <button class="share__button" title="Поделиться в Telegram" onclick={`window.open('https://t.me/share/url?url=${encodeURIComponent(Astro.url.href)}&text=${encodeURIComponent(post.title)}', '_blank')`}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </main>
+                )
+            )
+        }
+
+        <Footer />
     </div>
-  </main>
 </Layout>
 
 <style lang="scss" scoped>
-  .new__main {
-    height: 100vh;
+    .page__wrapper {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
+    .nav__wrapper {
+        background: white;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
 
-  .container {
-    width: max-content;
-    padding: 10px 30px;
+    .news__main {
+        flex: 1;
+        color: white;
+    }
 
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+    .hero__image {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+        background: rgba(0, 0, 0, 0.2);
 
-    border: 1px solid black;
-    border-radius: 5px;
-    text-align: center;
-  }
+        @media (max-width: 768px) {
+            height: 350px;
+        }
+
+        @media (max-width: 480px) {
+            height: 250px;
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero__overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: linear-gradient(
+                to top,
+                rgba(26, 26, 46, 1),
+                transparent
+            );
+
+            @media (max-width: 768px) {
+                height: 150px;
+            }
+
+            @media (max-width: 480px) {
+                height: 100px;
+            }
+        }
+    }
+
+    .article__container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 60px 40px 80px;
+
+        @media (max-width: 768px) {
+            padding: 40px 20px 60px;
+        }
+
+        @media (max-width: 480px) {
+            padding: 30px 15px 40px;
+        }
+    }
+
+    .article__header {
+        margin-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        @media (max-width: 768px) {
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 480px) {
+            margin-bottom: 25px;
+            gap: 12px;
+        }
+
+        .breadcrumb {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #8b9dc3;
+            text-decoration: none;
+            font-family: Montserrat, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s;
+            width: fit-content;
+
+            svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 13px;
+
+                svg {
+                    width: 16px;
+                    height: 16px;
+                }
+            }
+
+            &:hover {
+                color: #d8c3ad;
+            }
+        }
+
+        .article__meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #8b9dc3;
+            font-family: Montserrat, sans-serif;
+            font-size: 14px;
+
+            svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 13px;
+
+                svg {
+                    width: 16px;
+                    height: 16px;
+                }
+            }
+        }
+
+        .article__title {
+            font-family: Montserrat, sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 15px 0 0;
+            color: white;
+
+            @media (max-width: 768px) {
+                font-size: 36px;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 28px;
+                margin-top: 10px;
+            }
+        }
+    }
+
+    .article__content {
+        .article__description {
+            font-family: Montserrat, sans-serif;
+            font-size: 22px;
+            font-weight: 500;
+            line-height: 1.6;
+            color: #d8c3ad;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+
+            @media (max-width: 768px) {
+                font-size: 20px;
+                margin-bottom: 30px;
+                padding-bottom: 25px;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 18px;
+                margin-bottom: 25px;
+                padding-bottom: 20px;
+            }
+        }
+
+        .article__text {
+            font-family: Montserrat, sans-serif;
+            font-size: 18px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+
+            @media (max-width: 768px) {
+                font-size: 17px;
+                line-height: 1.7;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 16px;
+                line-height: 1.6;
+            }
+        }
+    }
+
+    .article__footer {
+        margin-top: 60px;
+        padding-top: 40px;
+        border-top: 2px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 30px;
+
+        @media (max-width: 768px) {
+            margin-top: 40px;
+            padding-top: 30px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 25px;
+        }
+
+        @media (max-width: 480px) {
+            margin-top: 30px;
+            padding-top: 25px;
+            gap: 20px;
+        }
+    }
+
+    .back__button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 28px;
+        background: #d8c3ad;
+        color: #282828;
+        text-decoration: none;
+        font-family: Montserrat, sans-serif;
+        font-weight: 600;
+        font-size: 15px;
+        border-radius: 8px;
+        transition: all 0.3s;
+        border: none;
+        cursor: pointer;
+
+        svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        @media (max-width: 480px) {
+            padding: 12px 24px;
+            font-size: 14px;
+
+            svg {
+                width: 16px;
+                height: 16px;
+            }
+        }
+
+        &:hover {
+            background: #c4af99;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(216, 195, 173, 0.4);
+        }
+    }
+
+    .share__section {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        @media (max-width: 768px) {
+            width: 100%;
+            justify-content: space-between;
+        }
+
+        .share__label {
+            font-family: Montserrat, sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+
+            @media (max-width: 480px) {
+                font-size: 13px;
+            }
+        }
+
+        .share__buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .share__button {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.2);
+                border-color: rgba(255, 255, 255, 0.4);
+                transform: translateY(-2px);
+            }
+
+            @media (max-width: 480px) {
+                width: 36px;
+                height: 36px;
+
+                svg {
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
+    }
+
+    .error__container {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 60px 20px;
+
+        @media (max-width: 480px) {
+            padding: 40px 15px;
+        }
+    }
+
+    .error__content {
+        text-align: center;
+        max-width: 600px;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 60px 40px;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+
+        @media (max-width: 768px) {
+            padding: 50px 30px;
+        }
+
+        @media (max-width: 480px) {
+            padding: 40px 20px;
+            gap: 20px;
+        }
+
+        .error__icon {
+            width: 80px;
+            height: 80px;
+            color: #ff6b6b;
+
+            @media (max-width: 768px) {
+                width: 64px;
+                height: 64px;
+            }
+
+            @media (max-width: 480px) {
+                width: 48px;
+                height: 48px;
+            }
+        }
+
+        .error__title {
+            font-family: Montserrat, sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: #ff6b6b;
+            margin: 0;
+
+            @media (max-width: 768px) {
+                font-size: 36px;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 28px;
+            }
+        }
+
+        .error__message {
+            font-family: Montserrat, sans-serif;
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin: 0;
+
+            @media (max-width: 768px) {
+                font-size: 17px;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 16px;
+            }
+        }
+    }
 </style>
