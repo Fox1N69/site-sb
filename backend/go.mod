@@ -8,6 +8,7 @@ require (
 	github.com/gin-gonic/gin v1.10.0
 	github.com/go-ozzo/ozzo-validation v3.6.0+incompatible
 	github.com/go-redis/redis/v8 v8.11.5
+	github.com/google/uuid v1.4.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/spf13/viper v1.19.0
 	golang.org/x/crypto v0.23.0

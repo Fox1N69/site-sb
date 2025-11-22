@@ -4,8 +4,8 @@
  */
 export interface Post {
     id: number;
-    preview_image: string;
-    full_image: string;
+    preview_image: string;      // Cover/thumbnail image
+    images?: string[];           // Array of additional images
     title: string;
     description: string;
     text: string;
@@ -23,3 +23,13 @@ export interface PostResponse {
 }
 
 export interface PostsListResponse extends Array<Post> { }
+
+/**
+ * Image upload response
+ */
+export interface UploadResponse {
+    message: string;
+    urls: string[];
+    errors?: string[];
+    count: number;
+}

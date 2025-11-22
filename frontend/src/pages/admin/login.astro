@@ -1,56 +1,283 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { API_BASE_URL } from "@/config/api";
 ---
 
-<script>
-    async function authenticate() {
-        const username = prompt("Введите логин:");
-        const password = prompt("Введите пароль:");
+<Layout title="Вход в админ-панель">
+    <div class="login-page">
+        <div class="login-container">
+            <div class="login-card">
+                <div class="login-header">
+                    <h1>Админ-панель</h1>
+                    <p>Войдите для управления новостями</p>
+                </div>
 
-        if (username && password) {
-            // Отправляем запрос на сервер
-            const response = await fetch(
-                "http://localhost:4000/v1/account/auth/login",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        username: username,
-                        password: password,
-                    }),
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="username">Логин</label>
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            required
+                            autocomplete="username"
+                            placeholder="Введите логин"
+                        />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Пароль</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            required
+                            autocomplete="current-password"
+                            placeholder="Введите пароль"
+                        />
+                    </div>
+
+                    <div id="errorMessage" class="error-message"></div>
+
+                    <button type="submit" class="login-button">
+                        <span class="button-text">Войти</span>
+                        <span class="button-loader" style="display: none;">
+                            <svg class="spinner" viewBox="0 0 50 50">
+                                <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+                            </svg>
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<script define:vars={{ API_BASE_URL }}>
+    const form = document.getElementById('loginForm');
+    const errorMessage = document.getElementById('errorMessage');
+    const loginButton = form.querySelector('.login-button');
+    const buttonText = loginButton.querySelector('.button-text');
+    const buttonLoader = loginButton.querySelector('.button-loader');
+
+    // Check if already logged in
+    const token = localStorage.getItem('token');
+    if (token) {
+        window.location.href = '/admin';
+    }
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        // Clear previous error
+        errorMessage.textContent = '';
+        errorMessage.style.display = 'none';
+
+        // Show loading state
+        loginButton.disabled = true;
+        buttonText.style.display = 'none';
+        buttonLoader.style.display = 'inline-block';
+
+        try {
+            const response = await fetch(`${API_BASE_URL}/v1/account/auth/login`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
                 },
-            );
+                body: JSON.stringify({ username, password }),
+            });
+
+            const data = await response.json();
 
             if (response.ok) {
-                const data = await response.json();
+                // Save token and user info
+                localStorage.setItem('token', data.token);
+                localStorage.setItem('user', JSON.stringify(data.user));
+                localStorage.setItem('tokenExpiry', data.expired);
 
-                // Сохраняем JWT токен в LocalStorage
-                localStorage.setItem("token", data.token);
-
-                // Добавить дополнительную логику, если требуется
-                alert(`Добро пожаловать, ${data.user.fio}!`);
-                window.location.href = "/admin"; // Перенаправление на защищённую страницу
+                // Redirect to admin panel
+                window.location.href = '/admin';
             } else {
-                alert("Неверный логин или пароль.");
+                throw new Error(data.message || 'Неверный логин или пароль');
             }
-        } else {
-            alert("Логин и пароль не могут быть пустыми.");
+        } catch (error) {
+            errorMessage.textContent = error.message || 'Произошла ошибка при входе';
+            errorMessage.style.display = 'block';
+
+            // Reset button state
+            loginButton.disabled = false;
+            buttonText.style.display = 'inline';
+            buttonLoader.style.display = 'none';
+        }
+    });
+</script>
+
+<style lang="scss">
+    .login-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 20px;
+    }
+
+    .login-container {
+        width: 100%;
+        max-width: 450px;
+    }
+
+    .login-card {
+        background: white;
+        border-radius: 16px;
+        padding: 48px 40px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+        @media (max-width: 480px) {
+            padding: 32px 24px;
         }
     }
 
-    // Вызываем функцию при загрузке страницы
-    window.onload = authenticate;
-</script>
-
-<Layout title="admin">
-    <h1>Аутентификация</h1>
-    <p>Пожалуйста, подождите...</p>
-</Layout>
-
-<style lang="scss" scoped>
-    h1 {
+    .login-header {
         text-align: center;
+        margin-bottom: 40px;
+
+        h1 {
+            font-family: Montserrat, sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin: 0 0 12px 0;
+
+            @media (max-width: 480px) {
+                font-size: 28px;
+            }
+        }
+
+        p {
+            font-family: Montserrat, sans-serif;
+            font-size: 15px;
+            color: #6b7280;
+            margin: 0;
+        }
+    }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        label {
+            font-family: Montserrat, sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        input {
+            font-family: Montserrat, sans-serif;
+            font-size: 15px;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            transition: all 0.2s;
+            background: white;
+
+            &:focus {
+                outline: none;
+                border-color: #667eea;
+                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            }
+
+            &::placeholder {
+                color: #9ca3af;
+            }
+        }
+    }
+
+    .error-message {
+        display: none;
+        padding: 12px 16px;
+        background: #fee2e2;
+        border: 1px solid #fecaca;
+        border-radius: 8px;
+        color: #dc2626;
+        font-family: Montserrat, sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .login-button {
+        font-family: Montserrat, sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 14px 24px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+
+        &:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        &:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        &:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+    }
+
+    .spinner {
+        animation: rotate 2s linear infinite;
+        width: 24px;
+        height: 24px;
+
+        .path {
+            stroke: white;
+            stroke-linecap: round;
+            animation: dash 1.5s ease-in-out infinite;
+        }
+    }
+
+    @keyframes rotate {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes dash {
+        0% {
+            stroke-dasharray: 1, 150;
+            stroke-dashoffset: 0;
+        }
+        50% {
+            stroke-dasharray: 90, 150;
+            stroke-dashoffset: -35;
+        }
+        100% {
+            stroke-dasharray: 90, 150;
+            stroke-dashoffset: -124;
+        }
     }
 </style>

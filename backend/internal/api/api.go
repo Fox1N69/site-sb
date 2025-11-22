@@ -56,8 +56,12 @@ func (c *server) handlers() {
 func (c *server) v1() {
 	authHandler := v1.NewAuthHandler(c.service.AuthService(), c.infra)
 	postHandler := v1.NewPostHandler(c.service.PostService())
+	uploadHandler := v1.NewUploadHandler("./uploads")
 
 	c.gin.Use(sessions.Sessions("user", c.store))
+
+	// Serve static files from uploads directory
+	c.gin.Static("/uploads", "./uploads")
 
 	admin := c.gin.Group("/admin")
 	{
@@ -68,6 +72,12 @@ func (c *server) v1() {
 			post.POST("/create", postHandler.Create)
 			post.PATCH("/update/:id", postHandler.Update)
 			post.DELETE("/delete/:id", postHandler.Delete)
+		}
+
+		upload := admin.Group("/upload")
+		{
+			upload.POST("/images", uploadHandler.UploadImages)
+			upload.DELETE("/image", uploadHandler.DeleteImage)
 		}
 	}
 
